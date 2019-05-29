@@ -6,6 +6,8 @@ import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
 
 export default class Whiteboard extends React.Component {
+
+
     render() {
         return (
             <Router>
@@ -15,10 +17,6 @@ export default class Whiteboard extends React.Component {
                         <h1>Whiteboard</h1>
                     </div>
                     <CourseManager/>
-                    <Link to="/course-list">List</Link>
-                    <Link to="/course-grid">Grid</Link>
-                    <Link to="/course-editor/123">Editor</Link>
-
 
                     <table className="table">
                         <thead className="thead-light">
@@ -33,9 +31,18 @@ export default class Whiteboard extends React.Component {
                                 <div className="d-none d-sm-block">Last modified</div>
                             </th>
                             <th scope="col">
-                                <div className="d-none d-sm-block">
-                                    <button type="button" className="btn"><i className="fa fa-th"></i></button>
-                                </div>
+                                <Link to="/course-grid">
+                                    <div className="d-none d-sm-block">
+                                        <button type="button" className="btn"><i className="fa fa-th"></i></button>
+                                    </div>
+                                </Link>
+                            </th>
+                            <th scope="col">
+                                <Link to="/course-list">
+                                    <div className="d-none d-sm-block">
+                                        <button type="button" className="btn"><i className="fa fa-list"></i></button>
+                                    </div>
+                                </Link>
                             </th>
                             <th scope="col">
                                 <div className="d-none d-sm-block">
@@ -47,7 +54,6 @@ export default class Whiteboard extends React.Component {
                         </tr>
                         </thead>
                     </table>
-
 
                     <Route
                         path="/course-grid"
@@ -63,9 +69,6 @@ export default class Whiteboard extends React.Component {
                     />
 
                 </div>
-
-
-
 
 
             </Router>
