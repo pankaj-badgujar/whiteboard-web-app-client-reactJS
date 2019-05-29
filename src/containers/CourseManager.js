@@ -4,7 +4,7 @@ export default class CourseManager extends Component{
         return (
             <div className="row bg-light">
                 <button type="button" className="btn btn-light col-1">
-                    <i className="fas fa-bars"></i>
+                    <i className="fa fa-bars"></i>
                 </button>
                 <label className="d-none d-sm-block col-3 col-form-label">Course
                     Manager</label>
@@ -15,7 +15,7 @@ export default class CourseManager extends Component{
                 </div>
                 <div className="col-2">
                     <button type="button" className="btn rounded-circle">
-                        <i className="fas fa-plus"></i>
+                        <i className="fa fa-plus"></i>
                     </button>
 
                 </div>
