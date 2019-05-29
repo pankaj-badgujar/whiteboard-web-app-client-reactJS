@@ -18,7 +18,9 @@ const CourseEditor = ({match}) => {
                     <ModuleList modules={course.modules}/>
                 </div>
                 <div className="col-8">
-                    <LessonTabs />
+                    <LessonTabs lessons={course.modules.lessons}/>
+                    <br/>
+                    <TopicPills/>
                 </div>
             </div>
         </div>

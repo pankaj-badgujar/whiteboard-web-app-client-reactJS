@@ -1,22 +1,14 @@
 import React from 'react'
 
-export default class CourseCard extends React.Component {
+const CourseCard = ({course}) =>
+    <div className="card" styles={{width: '18rem'}}>
+        <img className="card-img-top"
+             src="https://picsum.photos/300/200"/>
+        <div className="card-body">
+            <h5 className="card-title">{course.title}</h5>
+            <p className="card-text">Card text.</p>
+            <a href={`/course-editor/${course.id}`} className="btn btn-primary">More...</a>
+        </div>
+    </div>
 
-    constructor(props) {
-        super(props);
-
-    }
-
-    render() {
-        return (
-            <div className="card" styles={{width: '18rem'}}>
-                <img className="card-img-top"
-                     src="https://picsum.photos/300/200"/>
-                <div className="card-body">
-                    <h5 className="card-title">{this.props.course.title}</h5>
-                    <p className="card-text">Card text.</p>
-                    <a href={`/course-editor/${this.props.course.id}`} className="btn btn-primary">More...</a>
-                </div>
-            </div>)
-    }
-}
+export default CourseCard
