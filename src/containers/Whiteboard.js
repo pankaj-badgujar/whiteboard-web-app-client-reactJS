@@ -1,10 +1,8 @@
 import React from 'react'
-import CourseManager from "./CourseManager";
 import CourseTable from "./CourseTable";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
-import CourseService from "../services/CourseService";
 
 export default class Whiteboard extends React.Component {
 
@@ -17,7 +15,7 @@ export default class Whiteboard extends React.Component {
                     <div className="bg-dark text-center text-white">
                         <h1>Whiteboard</h1>
                     </div>
-                    <CourseManager/>
+
                     <Link to="/course-list">Courses</Link>
 
 
