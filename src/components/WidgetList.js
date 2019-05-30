@@ -18,13 +18,13 @@ class WidgetList extends React.Component{
                             <div className="row">
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-up"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-down"></i>
+                                        <i className="fa fa-arrow-circle-down"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
@@ -40,7 +40,7 @@ class WidgetList extends React.Component{
 
                                 <div className="col-1">
                                     <button type="button" className="btn btn-danger">
-                                        <i className="fas fa-times"></i>
+                                        <i className="fa fa-times"></i>
                                     </button>
                                 </div>
                             </div>
@@ -86,13 +86,13 @@ class WidgetList extends React.Component{
                             <div className="row">
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-up"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-down"></i>
+                                        <i className="fa fa-arrow-circle-down"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
@@ -108,7 +108,7 @@ class WidgetList extends React.Component{
 
                                 <div className="col-1">
                                     <button type="button" className="btn btn-danger">
-                                        <i className="fas fa-times"></i>
+                                        <i className="fa fa-times"></i>
                                     </button>
                                 </div>
                             </div>
@@ -144,13 +144,13 @@ class WidgetList extends React.Component{
                             <div className="row">
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-up"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-down"></i>
+                                        <i className="fa fa-arrow-circle-down"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
@@ -166,7 +166,7 @@ class WidgetList extends React.Component{
 
                                 <div className="col-1">
                                     <button type="button" className="btn btn-danger">
-                                        <i className="fas fa-times"></i>
+                                        <i className="fa fa-times"></i>
                                     </button>
                                 </div>
                             </div>
@@ -214,13 +214,13 @@ a separate row</textarea>
                             <div className="row">
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-up"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-down"></i>
+                                        <i className="fa fa-arrow-circle-down"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
@@ -236,7 +236,7 @@ a separate row</textarea>
 
                                 <div className="col-1">
                                     <button type="button" className="btn btn-danger">
-                                        <i className="fas fa-times"></i>
+                                        <i className="fa fa-times"></i>
                                     </button>
                                 </div>
                             </div>
@@ -274,13 +274,13 @@ a separate row</textarea>
                             <div className="row">
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-up"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
                                 <div className="col-1">
                                     <button type="button" className="btn btn-warning">
-                                        <i className="fas fa-arrow-circle-down"></i>
+                                        <i className="fa fa-arrow-circle-down"></i>
                                     </button>
                                 </div>
                                 <label className="col-1"></label>
@@ -296,7 +296,7 @@ a separate row</textarea>
 
                                 <div className="col-1">
                                     <button type="button" className="btn btn-danger">
-                                        <i className="fas fa-times"></i>
+                                        <i className="fa fa-times"></i>
                                     </button>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@ a separate row</textarea>
                 <ul className="nav flex-column nav-pills">
                     <li className="nav-item text-right">
                         <button type="button" className="btn btn-danger rounded-circle ">
-                            <i className="fas fa-plus"></i>
+                            <i className="fa fa-plus"></i>
                         </button>
                     </li>
                 </ul>
