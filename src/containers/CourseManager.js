@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import CourseTable from "./CourseTable";
 export default class CourseManager extends Component {
     render() {
         return (
@@ -21,6 +22,7 @@ export default class CourseManager extends Component {
 
                     </div>
                 </div>
+
             </div>
         )
     }

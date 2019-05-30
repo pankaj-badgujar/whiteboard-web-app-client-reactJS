@@ -28,32 +28,4 @@ const CourseEditor = ({match}) => {
 }
 
 
-/*const CourseEditor = ({match}) => {
-
-    let courseService = CourseService.getInstance();
-    const courseId = match.params.id;
-    const course = courseService.findCourseById(courseId);
-
-    return (
-        <div>
-            <h2>{course.title}{courseId}</h2>
-
-            <div className="row">
-
-                <div className="col-4">
-                    <ModuleList modules={course.modules}/>
-                </div>
-
-                <div className="col-8">
-                    <LessonTabs/>
-                    <br/>
-                    <TopicPills/>
-                </div>
-
-            </div>
-        </div>
-
-    );
-}*/
-
 export default CourseEditor

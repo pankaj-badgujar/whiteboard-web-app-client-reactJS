@@ -4,6 +4,7 @@ import CourseTable from "./CourseTable";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
+import CourseService from "../services/CourseService";
 
 export default class Whiteboard extends React.Component {
 
@@ -17,43 +18,8 @@ export default class Whiteboard extends React.Component {
                         <h1>Whiteboard</h1>
                     </div>
                     <CourseManager/>
+                    <Link to="/course-list">Courses</Link>
 
-                    <table className="table">
-                        <thead className="thead-light">
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Title</th>
-
-                            <th scope="col">
-                                <div className="d-none d-sm-block">Owned By</div>
-                            </th>
-                            <th scope="col">
-                                <div className="d-none d-sm-block">Last modified</div>
-                            </th>
-                            <th scope="col">
-                                <Link to="/course-grid">
-                                    <div className="d-none d-sm-block">
-                                        <button type="button" className="btn"><i className="fa fa-th"></i></button>
-                                    </div>
-                                </Link>
-                            </th>
-                            <th scope="col">
-                                <Link to="/course-list">
-                                    <div className="d-none d-sm-block">
-                                        <button type="button" className="btn"><i className="fa fa-list"></i></button>
-                                    </div>
-                                </Link>
-                            </th>
-                            <th scope="col">
-                                <div className="d-none d-sm-block">
-                                    <button type="button" className="btn"><i className="fa fa-sort"></i>
-                                    </button>
-                                </div>
-                            </th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
 
                     <Route
                         path="/course-grid"
