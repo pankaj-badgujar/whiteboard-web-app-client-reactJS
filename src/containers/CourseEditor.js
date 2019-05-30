@@ -3,6 +3,7 @@ import ModuleList from "../components/ModuleList";
 import LessonTabs from "../components/LessonTabs";
 import TopicPills from "../components/TopicPills";
 import CourseService from '../services/CourseService.js'
+import WidgetList from "../components/WidgetList";
 
 const CourseEditor = ({match}) => {
 
@@ -21,6 +22,8 @@ const CourseEditor = ({match}) => {
                     <LessonTabs lessons={course.modules.lessons}/>
                     <br/>
                     <TopicPills/>
+                    <br />
+                    <WidgetList/>
                 </div>
             </div>
         </div>
