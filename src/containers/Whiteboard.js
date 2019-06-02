@@ -9,8 +9,8 @@ import CourseManager from "./CourseManager";
 
 
 export default class Whiteboard extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.courseService = CourseService.getInstance();
         this.state = {
             course : {
@@ -22,17 +22,21 @@ export default class Whiteboard extends React.Component {
         }
     }
 
-    addCourse = (event) => {
+    addCourse = () => {
+        this.setState({
+            course : {
+                id : (new Date()).getTime()
+            }
+        });
         this.courseService.createCourse(this.state.course);
             this.setState({
                 courses : this.courseService.findAllCourses()
             })
-    }
+    };
 
     changeCourseTitle = (event) => {
         this.setState({
             course : {
-                id : (new Date()).getTime(),
                 title: event.target.value,
                 modules:[]
             }
@@ -55,13 +59,12 @@ export default class Whiteboard extends React.Component {
                     <div className="bg-dark text-center text-white">
                         <h1>Whiteboard</h1>
                     </div>
-
-                        <CourseManager changeCourseTitle={this.changeCourseTitle} addCourse={this.addCourse}/>
+                    <CourseManager changeCourseTitle={this.changeCourseTitle} addCourse={this.addCourse}/>
 
 
                     <Route
                         path="/course-grid"
-                        render ={() => <CourseGrid courses={this.state.courses}/>}
+                        render ={() => <CourseGrid courses={this.state.courses} deleteCourse={this.deleteCourse}/>}
                     />
                     <Route
                         path="/course-list"

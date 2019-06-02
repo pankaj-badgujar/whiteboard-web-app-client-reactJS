@@ -13,7 +13,7 @@ class CourseService {
     }
 
     createCourse = course => {
-        courses.push(course)
+        courses.push(course);
     }
     findAllCourses = () => {
         return courses

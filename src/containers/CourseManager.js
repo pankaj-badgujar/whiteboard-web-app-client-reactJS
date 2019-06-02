@@ -9,20 +9,18 @@ const CourseManager = ({changeCourseTitle, addCourse}) =>
             </button>
             <h2 className="d-none d-sm-block col-3">Course
                 Manager</h2>
-
             <div className="col-sm-4 col-9">
                 <input type="text"
                        className="form-control"
                        id="newCourseFld"
                        placeholder="New Course Title"
-                       defaultValue="New Course"
                        onChange={(event) => changeCourseTitle(event)}
                 />
             </div>
             <div className="col-2">
                 <button
                     className="btn rounded-circle btn-danger"
-                    onClick={(event) => addCourse(event)}>
+                    onClick={() => addCourse()}>
                     <i className="fa fa-plus"></i>
                 </button>
             </div>
