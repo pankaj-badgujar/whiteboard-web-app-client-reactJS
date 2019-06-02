@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CourseRow = ({course,deleteCourse}) =>
+const CourseRow = ({course}) =>
 
             <table className="table">
                 <tbody>
@@ -15,7 +15,7 @@ const CourseRow = ({course,deleteCourse}) =>
                     <td></td>
                     <td></td>
                     <td>
-                        <button type="button" onClick={()=> deleteCourse(course.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                        <button type="button"  className="btn btn-danger"><i className="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 </tbody>

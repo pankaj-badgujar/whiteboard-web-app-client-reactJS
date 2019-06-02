@@ -35,11 +35,11 @@ export default class Whiteboard extends React.Component {
 
                     <Route
                         path="/course-grid"
-                        component={CourseGrid}
+                        render ={() => <CourseGrid courses={this.state.courses}/>}
                     />
                     <Route
                         path="/course-list"
-                        component={CourseTable}
+                        render ={() => <CourseTable courses={this.state.courses}/>}
                     />
                     <Route
                         path="/course-editor/:id"

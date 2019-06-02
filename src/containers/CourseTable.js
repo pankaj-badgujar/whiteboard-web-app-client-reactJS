@@ -2,6 +2,7 @@ import React from 'react'
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService.js'
 import {Link} from "react-router-dom";
+import CourseCard from "../components/CourseCard";
 
 
 class CourseTable extends React.Component {
@@ -33,10 +34,7 @@ class CourseTable extends React.Component {
     render() {
 
         return (
-
-<h1>Course list</h1>
-            /*<div>
-
+            <div>
                 <table className="table">
                     <thead className="thead-light">
                     <tr>
@@ -57,13 +55,6 @@ class CourseTable extends React.Component {
                             </Link>
                         </th>
                         <th scope="col">
-                            <Link to="/course-list">
-                                <div className="d-none d-sm-block">
-                                    <button type="button" className="btn"><i className="fa fa-list"></i></button>
-                                </div>
-                            </Link>
-                        </th>
-                        <th scope="col">
                             <div className="d-none d-sm-block">
                                 <button type="button" className="btn"><i className="fa fa-sort"></i>
                                 </button>
@@ -74,9 +65,9 @@ class CourseTable extends React.Component {
                     </thead>
                 </table>
                 {
-                this.state.courses.map(course => <CourseRow course={course} deleteCourse={this.deleteCourse}/>)
-            }
-            </div>*/
+                    this.props.courses.map(course => <CourseRow course={course}/>)}
+                }
+            </div>
         );
 
     }

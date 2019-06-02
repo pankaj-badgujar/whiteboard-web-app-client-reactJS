@@ -7,9 +7,7 @@ import {Link} from "react-router-dom";
 
 class CourseGrid extends React.Component{
     render() {
-        let courseService = CourseService.getInstance();
-        const courses = courseService.findAllCourses();
-
+        // const courses = this.props.courses;
         return (
             <div>
                     <table className="table">
@@ -42,7 +40,7 @@ class CourseGrid extends React.Component{
                         </thead>
                     </table>
                 <div className="card-deck container-fluid">
-                    {courses.map(course => <CourseCard course={course}/>)}
+                    {this.props.courses.map(course => <CourseCard course={course}/>)}
                 </div>
             </div>
         );
