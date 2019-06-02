@@ -1,5 +1,5 @@
-import courses from './courses.json'
-
+import coursesData from './courses.json'
+let courses=coursesData
 class CourseService {
 
     static myInstance = null;
