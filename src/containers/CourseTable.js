@@ -7,67 +7,36 @@ import {Link} from "react-router-dom";
 class CourseTable extends React.Component {
 
 
-    constructor(){
-        super();
-        let courseService = CourseService.getInstance();
-        this.state = {
-            course : {
-                id : -1,
-                title : 'New Course'
-            },
-            courses : courseService.findAllCourses()
-        }
-    }
-
     titleChanged = (event) => {
         this.setState({
-            course : {
-                id : (new Date()).getTime(),
-                title : event.target.value
+            course: {
+                id: (new Date()).getTime(),
+                title: event.target.value
             }
         })
 
     }
 
-    addCourse =() => {
+    addCourse = () => {
         this.setState({
-            courses : [this.state.course,...this.state.courses]
+            courses: [this.state.course, ...this.state.courses]
         })
 
     }
 
-    deleteCourse =(courseId) =>{
+    deleteCourse = (courseId) => {
         this.setState({
-            courses : this.state.courses.filter(course => course.id !== courseId)
+            courses: this.state.courses.filter(course => course.id !== courseId)
         })
     }
+
     render() {
 
         return (
 
-            <div>
-                <div className="container-fluid">
-                    <div className="row bg-light p-3">
-                        <button type="button" className="btn col-1">
-                            <i className="fa fa-bars"></i>
-                        </button>
-                        <h2 className="d-none d-sm-block col-3">Course
-                            Manager</h2>
+<h1>Course list</h1>
+            /*<div>
 
-                        <div className="col-sm-4 col-9">
-                            <input type="text" defaultValue="New Course" onChange={this.titleChanged} className="form-control" id="newCourseFld"
-                                   placeholder="New Course Title"/>
-                        </div>
-                        <div className="col-2">
-                            <button type="button" onClick={this.addCourse}
-                                    className="btn rounded-circle btn-danger">
-                                <i className="fa fa-plus"></i>
-                            </button>
-
-                        </div>
-                    </div>
-
-                </div>
                 <table className="table">
                     <thead className="thead-light">
                     <tr>
@@ -107,7 +76,7 @@ class CourseTable extends React.Component {
                 {
                 this.state.courses.map(course => <CourseRow course={course} deleteCourse={this.deleteCourse}/>)
             }
-            </div>
+            </div>*/
         );
 
     }

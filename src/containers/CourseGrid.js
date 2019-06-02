@@ -25,13 +25,6 @@ class CourseGrid extends React.Component{
                                 <div className="d-none d-sm-block">Last modified</div>
                             </th>
                             <th scope="col">
-                                <Link to="/course-grid">
-                                    <div className="d-none d-sm-block">
-                                        <button type="button" className="btn"><i className="fa fa-th"></i></button>
-                                    </div>
-                                </Link>
-                            </th>
-                            <th scope="col">
                                 <Link to="/course-list">
                                     <div className="d-none d-sm-block">
                                         <button type="button" className="btn"><i className="fa fa-list"></i></button>
