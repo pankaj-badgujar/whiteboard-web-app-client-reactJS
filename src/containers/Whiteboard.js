@@ -23,7 +23,7 @@ export default class Whiteboard extends React.Component {
     }
 
     addCourse = (event) => {
-            courseService.createCourse(this.state.course);
+        courseService.createCourse(this.state.course);
             this.setState({
                 courses : courseService.findAllCourses()
             })
@@ -37,6 +37,10 @@ export default class Whiteboard extends React.Component {
                 modules:[]
             }
         })
+    }
+
+    deleteCourse = (courseId) => {
+        courseService.deleteCourse(courseId);
     }
 
     render() {
@@ -57,7 +61,7 @@ export default class Whiteboard extends React.Component {
                     />
                     <Route
                         path="/course-list"
-                        render ={() => <CourseTable courses={this.state.courses}/>}
+                        render ={() => <CourseTable courses={this.state.courses} deleteCourse={this.deleteCourse}/>}
                     />
                     <Route
                         path="/course-editor/:id"

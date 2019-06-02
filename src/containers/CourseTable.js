@@ -1,34 +1,11 @@
 import React from 'react'
 import CourseRow from '../components/CourseRow'
-import CourseService from '../services/CourseService.js'
 import {Link} from "react-router-dom";
-import CourseCard from "../components/CourseCard";
 
 
 class CourseTable extends React.Component {
-
-
-    titleChanged = (event) => {
-        this.setState({
-            course: {
-                id: (new Date()).getTime(),
-                title: event.target.value
-            }
-        })
-
-    }
-
-    addCourse = () => {
-        this.setState({
-            courses: [this.state.course, ...this.state.courses]
-        })
-
-    }
-
-    deleteCourse = (courseId) => {
-        this.setState({
-            courses: this.state.courses.filter(course => course.id !== courseId)
-        })
+    constructor(props){
+        super(props);
     }
 
     render() {
@@ -63,7 +40,7 @@ class CourseTable extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.courses.map(course => <CourseRow course={course}/>)}
+                    {this.props.courses.map(course => <CourseRow course={course} key={course.id} deleteCourse={this.props.deleteCourse}/>)}
                     </tbody>
                 </table>
 
