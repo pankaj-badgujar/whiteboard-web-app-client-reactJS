@@ -6,20 +6,38 @@ import CourseEditor from "./CourseEditor.js"
 import CourseService from "../services/CourseService";
 import CourseManager from "./CourseManager";
 
-export default class Whiteboard extends React.Component {
+let courseService = CourseService.getInstance();
 
+export default class Whiteboard extends React.Component {
     constructor(){
         super();
-        let courseService = CourseService.getInstance();
+
         this.state = {
             course : {
                 id : -1,
-                title : 'New Course'
+                title : 'New Course',
+                modules:[]
             },
             courses : courseService.findAllCourses()
         }
     }
 
+    addCourse = (event) => {
+            courseService.createCourse(this.state.course);
+            this.setState({
+                courses : courseService.findAllCourses()
+            })
+    }
+
+    changeCourseTitle = (event) => {
+        this.setState({
+            course : {
+                id : (new Date()).getTime(),
+                title: event.target.value,
+                modules:[]
+            }
+        })
+    }
 
     render() {
         return (
@@ -30,7 +48,7 @@ export default class Whiteboard extends React.Component {
                         <h1>Whiteboard</h1>
                     </div>
 
-                        <CourseManager/>
+                        <CourseManager changeCourseTitle={this.changeCourseTitle} addCourse={this.addCourse}/>
 
 
                     <Route

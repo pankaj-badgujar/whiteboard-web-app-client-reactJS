@@ -38,7 +38,6 @@ class CourseTable extends React.Component {
                 <table className="table">
                     <thead className="thead-light">
                     <tr>
-                        <th scope="col"></th>
                         <th scope="col">Title</th>
 
                         <th scope="col">
@@ -63,10 +62,11 @@ class CourseTable extends React.Component {
                         <th></th>
                     </tr>
                     </thead>
+                    <tbody>
+                    {this.props.courses.map(course => <CourseRow course={course}/>)}
+                    </tbody>
                 </table>
-                {
-                    this.props.courses.map(course => <CourseRow course={course}/>)}
-                }
+
             </div>
         );
 

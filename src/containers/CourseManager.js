@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
-const CourseManager = () =>
+const CourseManager = ({changeCourseTitle, addCourse}) =>
     <div className="container-fluid">
         <div className="row bg-light p-3">
             <button type="button" className="btn col-1">
@@ -11,12 +11,18 @@ const CourseManager = () =>
                 Manager</h2>
 
             <div className="col-sm-4 col-9">
-                <input type="text"   className="form-control" id="newCourseFld"
-                       placeholder="New Course Title"/>
+                <input type="text"
+                       className="form-control"
+                       id="newCourseFld"
+                       placeholder="New Course Title"
+                       defaultValue="New Course"
+                       onChange={(event) => changeCourseTitle(event)}
+                />
             </div>
             <div className="col-2">
-                <button type="button"
-                        className="btn rounded-circle btn-danger">
+                <button
+                    className="btn rounded-circle btn-danger"
+                    onClick={(event) => addCourse(event)}>
                     <i className="fa fa-plus"></i>
                 </button>
             </div>
