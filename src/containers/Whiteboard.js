@@ -23,11 +23,6 @@ export default class Whiteboard extends React.Component {
     }
 
     addCourse = () => {
-        this.setState({
-            course : {
-                id : (new Date()).getTime()
-            }
-        });
         this.courseService.createCourse(this.state.course);
             this.setState({
                 courses : this.courseService.findAllCourses()
@@ -37,6 +32,7 @@ export default class Whiteboard extends React.Component {
     changeCourseTitle = (event) => {
         this.setState({
             course : {
+                id : (new Date()).getTime(),
                 title: event.target.value,
                 modules:[]
             }
