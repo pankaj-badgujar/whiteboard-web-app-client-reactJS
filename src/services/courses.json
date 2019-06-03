@@ -4,12 +4,15 @@
     "title": "CS5610",
     "modules": [
       {
+        "id" : "1",
         "title": "Week 1",
         "lessons": [
           {
+            "id" : "1",
             "title": "HTML",
             "topics": [
               {
+                "id" : "1",
                 "title": "DOM",
                 "widgets": [
                   {
@@ -37,22 +40,26 @@
                 ]
               },
               {
+                "id" : "2",
                 "title": "Tags",
                 "widgets": []
               },
               {
+                "id" : "3",
                 "title": "Attributes",
                 "widgets": []
               }
             ]
           },
           {
+            "id" : "2",
             "title": "CSS",
             "topics": []
           }
         ]
       },
       {
+        "id" : "2",
         "title": "Week 2",
         "lessons": []
       }
