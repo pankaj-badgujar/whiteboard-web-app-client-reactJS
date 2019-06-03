@@ -5,37 +5,46 @@ import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
 import CourseService from "../services/CourseService";
 import CourseNavigationBar from "./CourseNavigationBar";
-
+import LessonTabs from "../components/LessonTabs";
 
 
 export default class CourseManager extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.changeCourseTitle = this.changeCourseTitle.bind(this);
         this.courseService = CourseService.getInstance();
+        const courses = this.courseService.findAllCourses();
+
         this.state = {
-            course : {
-                id : -1,
-                title : 'New Course',
-                modules:[]
+            course: {
+                id: -1,
+                title: 'New Course',
+                modules: []
             },
-            courses : this.courseService.findAllCourses()
+            courses: courses,
+
+            selectedCourse : courses[0]
         }
+
+    }
+
+    selectCourse = course => {
+            this.setState({selectedCourse : course})
     }
 
     addCourse = () => {
         this.courseService.createCourse(this.state.course);
-            this.setState({
-                courses : this.courseService.findAllCourses()
-            })
+        this.setState({
+            courses: this.courseService.findAllCourses()
+        })
     };
 
     changeCourseTitle = (event) => {
         this.setState({
-            course : {
-                id : (new Date()).getTime(),
+            course: {
+                id: (new Date()).getTime(),
                 title: event.target.value,
-                modules:[]
+                modules: []
             }
         })
     }
@@ -43,7 +52,7 @@ export default class CourseManager extends React.Component {
     deleteCourse = (courseId) => {
         this.courseService.deleteCourse(courseId)
         this.setState({
-            courses : this.courseService.findAllCourses()
+            courses: this.courseService.findAllCourses()
         })
 
     }
@@ -61,14 +70,23 @@ export default class CourseManager extends React.Component {
 
                     <Route
                         path="/course-grid"
-                        render ={() => <CourseGrid courses={this.state.courses} deleteCourse={this.deleteCourse}/>}
+                        render={() => <CourseGrid
+                            courses={this.state.courses}
+                            deleteCourse={this.deleteCourse}
+                            selectCourse = {this.selectCourse}
+                        />}
                     />
                     <Route
                         path="/course-list"
-                        render ={() => <CourseTable courses={this.state.courses} deleteCourse={this.deleteCourse}/>}
+                        render={() => <CourseTable
+                            courses={this.state.courses}
+                            deleteCourse={this.deleteCourse}
+                            selectCourse = {this.selectCourse}
+                        />}
                     />
+
                     <Route
-                        path="/course-editor/:id/modules/:moduleId/lessons/:lessonId/topics/:topicId"
+                        path="/course-editor/:courseId"
                         component={CourseEditor}
                     />
 

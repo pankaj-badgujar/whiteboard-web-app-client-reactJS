@@ -54,14 +54,26 @@
           {
             "id" : "2",
             "title": "CSS",
-            "topics": []
+            "topics": [
+              {
+                "id" : "1",
+                "title": "Bootstrap",
+                "widgets": []
+              }
+            ]
           }
         ]
       },
       {
         "id" : "2",
         "title": "Week 2",
-        "lessons": []
+        "lessons": [
+          {
+            "id" : "1",
+            "title" : "jQuery",
+            "topics": []
+          }
+        ]
       }
     ]
   },

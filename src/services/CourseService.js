@@ -1,5 +1,7 @@
 import coursesData from './courses.json'
-let courses=coursesData
+
+let courses = coursesData
+
 class CourseService {
 
     static myInstance = null;
@@ -26,6 +28,11 @@ class CourseService {
     }
     deleteCourse = courseId => {
         courses = courses.filter(course => course.id !== courseId)
+    }
+
+    findModuleByModuleId = (courseId, moduleId) => {
+        const selectedCourse = courses.find(course => course.id === courseId)
+        return module = selectedCourse.modules.find(module => module.id === moduleId)
     }
 }
 

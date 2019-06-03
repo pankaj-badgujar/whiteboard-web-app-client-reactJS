@@ -39,7 +39,8 @@ class CourseGrid extends React.Component {
                 </table>
                 <div className={"row"}>
                     <div className="card-deck container-fluid">
-                        {this.props.courses.map(course => <CourseCard course={course}
+                        {this.props.courses.map(course => <CourseCard course={course} key={course.id}
+                                                                      selectCourse = {this.props.selectCourse}
                                                                       deleteCourse={this.props.deleteCourse}/>)}
                     </div>
 

@@ -1,26 +1,15 @@
 import React from 'react'
 
-export default class TopicPills extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-    render(){
-        return(
-            <ul className="nav nav-pills">
-                <li className="nav-item">
-                    <a className="nav-link active" href="#">Active</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-        );
-    }
 
-}
+const TopicPills = ({topics,selectTopic ,selectedTopic}) =>
+
+    <ul className="nav nav-pills">
+        {topics.map( topic =>
+            <li className="nav-item m-2" onClick={() => selectTopic(topic)}>
+                <a className={ topic === selectedTopic ? "nav-link active" : "nav-link"}>{topic.title}</a>
+            </li>
+        )}
+
+    </ul>
+
+export default TopicPills

@@ -1,20 +1,30 @@
 import React from 'react'
-import ModuleList from './ModuleList.js'
+import {Link} from "react-router-dom";
 
-const ModuleListItem = ({module, deleteModule}) =>
+const ModuleListItem = ({courseId,module, deleteModule, selectModule, selectedModule}) =>
 
-    <ul className="list-group">
-        <li className="list-group-item">{module.title}
-            <span className="float-right">
-                <button className="btn btn-danger mx-2">
-                <i onClick={() => deleteModule(module.id)} className="fa fa-trash "></i>
-                </button>
-                <button className="btn btn-warning mx-2">
-                <i className="fa fa-edit"></i>
+
+        <li
+            className={module === selectedModule ? "list-group-item active" : "list-group-item"}
+            onClick={() => selectModule(module)}
+        >
+
+            <div className="row">
+                <div className={"col-6"}>
+            {module.title}
+                </div>
+                <div className="col-6">
+                    <button className="btn btn-danger mx-1 float-left">
+                        <i onClick={() => deleteModule(module.id)} className="fa fa-trash "></i>
                     </button>
-            </span>
+                    <button className="btn btn-warning mx-1 float-right">
+                        <i className="fa fa-edit"></i>
+                    </button>
+                </div>
+            </div>
+
         </li>
-    </ul>
+
 
 
 export default ModuleListItem
