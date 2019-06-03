@@ -4,31 +4,81 @@ import LessonTabs from "../components/LessonTabs";
 import TopicPills from "../components/TopicPills";
 import CourseService from '../services/CourseService.js'
 import WidgetList from "../components/WidgetList";
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
-const CourseEditor = ({match}) => {
+class CourseEditor extends React.Component {
 
-    let courseService = CourseService.getInstance();
-    const courseId = match.params.id;
-    const course = courseService.findCourseById(courseId);
+    constructor(props) {
+        super(props);
 
-    return (
-        <div>
-        <h2>{course.title}</h2>
-            <div className="row">
-                <div className="col-4">
-                    <ModuleList modules={course.modules}/>
+        let courseService = CourseService.getInstance();
+        const courseExtracted = courseService.findCourseById(props.match.params.courseId);
+        if (courseExtracted.modules.length === 0){
+            console.log("empty")
+        }
+        this.state = {
+            courseId: props.match.params.courseId,
+            course: courseExtracted,
+            selectedModule : courseExtracted.modules[0],
+            selectedLesson : courseExtracted.modules[0].lessons[0],
+            selectedTopic : courseExtracted.modules[0].lessons[0].topics[0]
+        }
+
+    }
+
+    selectTopic = topic => {
+        this.setState({
+            selectedTopic : topic
+        })
+    }
+
+
+    selectLesson = lesson => {
+        this.setState({
+            selectedLesson : lesson,
+            selectedTopic : lesson.topics[0]
+        })
+    }
+    selectModule = module => {
+        this.setState({
+            selectedModule  : module,
+            selectedLesson: module.lessons[0],
+            selectedTopic: module.lessons[0].topics[0]
+
+        })
+    }
+
+    render() {
+        return (
+            <Router>
+                <div>
+                    <h2>{this.state.course.title}</h2>
+                    <div className="row">
+                        <div className="col-4">
+                            <ModuleList
+                                selectedModule={this.state.selectedModule}
+                                selectModule={this.selectModule}
+                                courseId={this.state.courseId}
+                                modules={this.state.course.modules}/>
+                        </div>
+
+                        <div className="col-8">
+                            <LessonTabs
+                                lessons={this.state.selectedModule.lessons}
+                                selectedLesson = {this.state.selectedLesson}
+                                selectLesson={this.selectLesson}
+                            />
+                            <TopicPills
+                                topics={this.state.selectedLesson.topics}
+                                selectedTopic={this.state.selectedTopic}
+                                selectTopic={this.selectTopic}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="col-8">
-                    <LessonTabs lessons={course.modules.lessons}/>
-                    <br/>
-                    <TopicPills/>
-                    <br />
-                    <WidgetList/>
-                </div>
-            </div>
-        </div>
-    );
+            </Router>
+        );
+    }
 }
-
 
 export default CourseEditor
