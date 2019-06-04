@@ -6,12 +6,13 @@ import CourseService from '../services/CourseService.js'
 import WidgetList from "../components/WidgetList";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
+let courseService = CourseService.getInstance();
+
 class CourseEditor extends React.Component {
 
     constructor(props) {
         super(props);
 
-        let courseService = CourseService.getInstance();
         const courseExtracted = courseService.findCourseById(props.match.params.courseId);
         if (courseExtracted.modules.length === 0){
             console.log("empty")
@@ -48,6 +49,7 @@ class CourseEditor extends React.Component {
         })
     }
 
+
     render() {
         return (
             <Router>
@@ -67,6 +69,7 @@ class CourseEditor extends React.Component {
                                 lessons={this.state.selectedModule.lessons}
                                 selectedLesson = {this.state.selectedLesson}
                                 selectLesson={this.selectLesson}
+                                addLesson={this.addLesson}
                             />
                             <TopicPills
                                 topics={this.state.selectedLesson.topics}
