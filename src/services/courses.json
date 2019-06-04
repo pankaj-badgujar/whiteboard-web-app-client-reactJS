@@ -4,12 +4,15 @@
     "title": "CS5610",
     "modules": [
       {
+        "id" : "1",
         "title": "Week 1",
         "lessons": [
           {
+            "id" : "1",
             "title": "HTML",
             "topics": [
               {
+                "id" : "1",
                 "title": "DOM",
                 "widgets": [
                   {
@@ -37,24 +40,40 @@
                 ]
               },
               {
+                "id" : "2",
                 "title": "Tags",
                 "widgets": []
               },
               {
+                "id" : "3",
                 "title": "Attributes",
                 "widgets": []
               }
             ]
           },
           {
+            "id" : "2",
             "title": "CSS",
-            "topics": []
+            "topics": [
+              {
+                "id" : "1",
+                "title": "Bootstrap",
+                "widgets": []
+              }
+            ]
           }
         ]
       },
       {
+        "id" : "2",
         "title": "Week 2",
-        "lessons": []
+        "lessons": [
+          {
+            "id" : "1",
+            "title" : "jQuery",
+            "topics": []
+          }
+        ]
       }
     ]
   },
@@ -77,11 +96,6 @@
   {
     "id": "456",
     "title": "CS5400",
-    "modules": []
-  },
-  {
-    "id": "567",
-    "title": "CS5210",
     "modules": []
   }
 ]
