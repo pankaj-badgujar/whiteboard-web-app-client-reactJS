@@ -19,6 +19,10 @@ class WidgetService {
 
     }
 
+    findAllWidgets(){
+        return widgets;
+    }
+
     findWidget(widgetId){
 
     }
