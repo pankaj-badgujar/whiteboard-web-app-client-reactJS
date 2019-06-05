@@ -1,8 +1,12 @@
 import React from 'react'
 import '../styles/widgetList.style.client.css'
-import {CREATE_WIDGET} from "../constants";
+import HeadingWidget from "./HeadingWidget";
+import ParagraphWidget from "./ParagraphWidget";
+import ListWidget from "./ListWidget";
+import LinkWidget from "./LinkWidget";
+import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({widgets,createWidget, previewSelect}) =>
+const WidgetList = ({widgets, createWidget, previewSelect}) =>
 
     <div>
         <div className={"row"}>
@@ -18,6 +22,19 @@ const WidgetList = ({widgets,createWidget, previewSelect}) =>
             </label>
         </div>
 
+        <ul className={"noBulletsForList"}>
+            {widgets.map(widget => (
+                <li>{
+                    ((widget.type === "HEADING" && <HeadingWidget/>)
+                        || (widget.type === "PARAGRAPH" && <ParagraphWidget/>)
+                        || (widget.type === "LIST" && <ListWidget/>)
+                        || (widget.type === "LINK" && <LinkWidget/>)
+                        || (widget.type === "IMAGE" && <ImageWidget/>)
+                    )
+                }</li>
+            ))}
+        </ul>
+
 
         <div className={"row"}>
             <label className={"col-11"}></label>
@@ -29,6 +46,8 @@ const WidgetList = ({widgets,createWidget, previewSelect}) =>
                 </button>
             </div>
         </div>
+        <br />
+        <br />
     </div>
 
 export default WidgetList

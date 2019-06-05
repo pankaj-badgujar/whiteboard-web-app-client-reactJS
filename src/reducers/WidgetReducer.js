@@ -1,7 +1,16 @@
 import {CREATE_WIDGET, PREVIEW_SELECT} from "../constants";
+import WidgetService from "../services/WidgetService";
 
+let widgetService = WidgetService.getInstance();
+const widgetsArray = widgetService.findAllWidgets();
 
-const widgetReducer = (state = [],action) => {
+let initialState = {
+  widgets :widgetsArray
+};
+
+console.log(initialState);
+console.log(widgetsArray);
+const widgetReducer = (state = initialState,action) => {
     switch(action.type){
         case PREVIEW_SELECT:
             alert('now did select');

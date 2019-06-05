@@ -50,3 +50,7 @@ input:checked + .slider:before {
 body {
     background-color: #f1f2f3;
 }
+
+.noBulletsForList{
+    list-style-type: none;
+}

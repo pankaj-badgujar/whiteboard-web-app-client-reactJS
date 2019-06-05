@@ -5,24 +5,22 @@ import TopicPills from "../components/TopicPills";
 import CourseService from '../services/CourseService.js'
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import WidgetListContainer from "./WidgetListContainer";
-import WidgetList from "../components/WidgetList";
 import Provider from "react-redux/es/components/Provider";
 import {createStore} from "redux";
 import widgetReducer from '../reducers/WidgetReducer';
-import WidgetService from "../services/WidgetService";
-import {combineReducers} from "redux/es/redux";
+
 
 let courseService = CourseService.getInstance();
-let widgetService = WidgetService.getInstance();
 
-const store = createStore(combineReducers({widgetReducer}));
+
+const store = createStore(widgetReducer);
 
 class CourseEditor extends React.Component {
 
     constructor(props) {
         super(props);
 
-        const widgetsArray = widgetService.findAllWidgets();
+
         const courseExtracted = courseService.findCourseById(props.match.params.courseId);
         if (courseExtracted.modules.length === 0) {
             console.log("empty")
