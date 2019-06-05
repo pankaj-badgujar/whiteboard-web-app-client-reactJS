@@ -54,3 +54,12 @@ body {
 .noBulletsForList{
     list-style-type: none;
 }
+
+.borderlist {
+    list-style-position:inside;
+    border: 1px solid black;
+}
+
+li{
+    margin-bottom: 40px;
+}

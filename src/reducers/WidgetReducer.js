@@ -14,6 +14,7 @@ const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case PREVIEW_SELECT:
             alert('now did select');
+
         case CREATE_WIDGET:
 
             let widgetTemplate = {
