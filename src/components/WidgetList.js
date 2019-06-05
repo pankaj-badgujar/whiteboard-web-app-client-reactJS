@@ -6,7 +6,7 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({widgets, createWidget, previewSelect}) =>
+const WidgetList = ({widgets, createWidget, previewSelect, deleteWidget}) =>
 
     <div>
         <div className={"row"}>
@@ -30,7 +30,7 @@ const WidgetList = ({widgets, createWidget, previewSelect}) =>
                         <div className="row mx-4">
 
                             <div className="col-4 ">
-                                <h5>{widget.type} WIDGET</h5>
+                                <h5>{widget.type} WIDGET = {widget.id}</h5>
                             </div>
                             <div className="col-2">
                                 <label></label>
@@ -60,7 +60,9 @@ const WidgetList = ({widgets, createWidget, previewSelect}) =>
                                     </div>
 
                                     <div className="col-1">
-                                        <button type="button" className="btn btn-danger">
+                                        <button
+                                            onClick={() => deleteWidget(widget.id)}
+                                            type="button" className="btn btn-danger">
                                             <i className="fa fa-times"></i>
                                         </button>
                                     </div>

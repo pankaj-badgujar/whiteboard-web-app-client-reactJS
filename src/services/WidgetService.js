@@ -31,7 +31,7 @@ class WidgetService {
     }
 
     deleteWidget(widgetId){
-
+        widgets = widgets.filter( widget => widget.id !== widgetId);
     }
 
 }

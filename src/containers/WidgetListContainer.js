@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import WidgetList from "../components/WidgetList";
 import {createWidget} from "../actions/createWidget"
 import {previewSelect} from "../actions/previewSelect"
+import {deleteWidget} from "../actions/deleteWidget";
 
 const stateToPropertyMapper = state => (
     {widgets: state.widgets}
@@ -10,11 +11,12 @@ const stateToPropertyMapper = state => (
 
 
 const dispatcherToPropertyMapper = dispatch => (
-    {
-        createWidget: () => createWidget(dispatch),
-        previewSelect:() => previewSelect(dispatch)
-}
-)
+        {
+            createWidget: () => createWidget(dispatch),
+            previewSelect: () => previewSelect(dispatch),
+            deleteWidget: (id) => dispatch(deleteWidget(id))
+        }
+    )
 ;
 
 const WidgetListContainer =
