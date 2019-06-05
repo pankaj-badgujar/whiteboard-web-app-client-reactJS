@@ -3,8 +3,9 @@ import ModuleList from "../components/ModuleList";
 import LessonTabs from "../components/LessonTabs";
 import TopicPills from "../components/TopicPills";
 import CourseService from '../services/CourseService.js'
-import WidgetList from "../components/WidgetList";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import WidgetListContainer from "./WidgetListContainer";
+import WidgetList from "../components/WidgetList";
 
 let courseService = CourseService.getInstance();
 
@@ -76,6 +77,11 @@ class CourseEditor extends React.Component {
                                 selectedTopic={this.state.selectedTopic}
                                 selectTopic={this.selectTopic}
                             />
+                            <br/>
+                            <WidgetList/>
+                            {/*<WidgetListContainer*/}
+                            {/*    widgets={this.state.selectedTopic.widgets}*/}
+                            {/*/>*/}
                         </div>
                     </div>
                 </div>

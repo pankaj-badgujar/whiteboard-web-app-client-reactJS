@@ -1,25 +1,21 @@
-import coursesData from './courses.json'
+import widgetData from './widgets.json'
 
-let courses = coursesData;
+let widgets = widgetData;
 
-class CourseService {
+class WidgetService {
 
     static myInstance = null;
 
     static getInstance() {
-        if (CourseService.myInstance == null) {
-            CourseService.myInstance =
-                new CourseService();
+        if (WidgetService.myInstance == null) {
+            WidgetService.myInstance =
+                new WidgetService();
         }
         return this.myInstance;
     }
 
-    createWidget(topicId, widget){
+    createWidget(widget){
         
-
-    }
-
-    findWidgets(topicId){
 
     }
 
@@ -37,4 +33,4 @@ class CourseService {
 
 }
 
-export default CourseService
+export default WidgetService
