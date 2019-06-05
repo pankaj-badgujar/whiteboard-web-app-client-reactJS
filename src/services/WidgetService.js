@@ -15,8 +15,7 @@ class WidgetService {
     }
 
     createWidget(widget){
-        
-
+        widgets.push(widget);
     }
 
     findAllWidgets(){

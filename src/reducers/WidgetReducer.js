@@ -5,20 +5,28 @@ let widgetService = WidgetService.getInstance();
 const widgetsArray = widgetService.findAllWidgets();
 
 let initialState = {
-  widgets :widgetsArray
+    widgets: widgetsArray
 };
 
-console.log(initialState);
-console.log(widgetsArray);
-const widgetReducer = (state = initialState,action) => {
-    switch(action.type){
+let idAutoIncrement = widgetsArray.length + 1;
+
+const widgetReducer = (state = initialState, action) => {
+    switch (action.type) {
         case PREVIEW_SELECT:
             alert('now did select');
-            return state;
         case CREATE_WIDGET:
-            alert('now added');
+
+            let widgetTemplate = {
+                id: idAutoIncrement++,
+                type: "HEADING",
+                size: 1,
+                text: "The Document Object Model"
+            };
+            widgetService.createWidget(widgetTemplate);
+            console.log(widgetService.findAllWidgets());
+            return { widgets : [...state.widgets,widgetTemplate]};
+        default:
             return state;
-        default: return state
     }
 };
 

@@ -23,8 +23,8 @@ const WidgetList = ({widgets, createWidget, previewSelect}) =>
         </div>
 
         <ul className={"noBulletsForList"}>
-            {widgets.map(widget => (
-                <li>{
+            {widgets.map((widget) => (
+                <li key = {widget.id}>{
                     ((widget.type === "HEADING" && <HeadingWidget/>)
                         || (widget.type === "PARAGRAPH" && <ParagraphWidget/>)
                         || (widget.type === "LIST" && <ListWidget/>)
