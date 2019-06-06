@@ -37,17 +37,17 @@ const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}
                             </div>
                             <div className="col-6">
                                 <div className="row">
-                                    <div className="col-1">
+                                    {widget !== widgets[0] &&<div className="col-1">
                                         <button type="button" className="btn btn-warning">
                                             <i className="fa fa-arrow-circle-up"></i>
                                         </button>
-                                    </div>
+                                    </div>}
                                     <label className="col-1"></label>
-                                    <div className="col-1">
+                                    {widget !== widgets[widgets.length - 1] && <div className="col-1">
                                         <button type="button" className="btn btn-warning">
                                             <i className="fa fa-arrow-circle-down"></i>
                                         </button>
-                                    </div>
+                                    </div>}
                                     <label className="col-1"></label>
                                     <div className="col-6">
                                         <select className="custom-select" role="widgetType">
@@ -71,11 +71,11 @@ const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}
                         </div>
 
 
-                        {((widget.type === "HEADING" && <HeadingWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
-                        || (widget.type === "PARAGRAPH" && <ParagraphWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
-                        || (widget.type === "LIST" && <ListWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
-                        || (widget.type === "LINK" && <LinkWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
-                        || (widget.type === "IMAGE" && <ImageWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
+                        {((widget.type === "HEADING" && <HeadingWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
+                        || (widget.type === "PARAGRAPH" && <ParagraphWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
+                        || (widget.type === "LIST" && <ListWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
+                        || (widget.type === "LINK" && <LinkWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
+                        || (widget.type === "IMAGE" && <ImageWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
                         )}
                     </div>
                 }</li>

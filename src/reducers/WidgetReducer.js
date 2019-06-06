@@ -16,7 +16,7 @@ const widgetReducer = (state = initialState, action) => {
         case PREVIEW_SELECT:
             return state.preview == "off" ? {widgets :state.widgets,preview : "on"}
             : {widgets :state.widgets,preview : "off"};
-            
+
         case CREATE_WIDGET:
             let widgetTemplate = {
                 id: idAutoIncrement++,
