@@ -54,7 +54,7 @@ class WidgetService {
                     "id" : idToBeAssigned,
                     "type": "LIST",
                     "listType" : "unordered",
-                    "items": "Enter,one,list,per,item"
+                    "items": "Enter\none\nlist\nper\nitem"
                 };
 
             case "IMAGE":

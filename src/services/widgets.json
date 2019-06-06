@@ -14,7 +14,7 @@
     "id" : 3,
     "type": "LIST",
     "listType" : "unordered",
-    "items": "Enter,one,list,per,item"
+    "items": "Enter\none\nlist\nper\nitem"
   },
   {
     "id" : 4,
