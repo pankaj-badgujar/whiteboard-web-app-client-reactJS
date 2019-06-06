@@ -24,16 +24,18 @@ class WidgetService {
     }
 
     findWidget(widgetId) {
-
+            return widgets.filter(widget => widget.id === widgetId);
     }
 
     selectWidget(widgetId, widgetType) {
-        const index = widgets.findIndex(function (widget) {
-            return widget.id == widgetId
-        });
-        widgets[index].type=widgetType;
+        widgets[this.findIndexOfWidget(widgetId)].type=widgetType;
     }
 
+    findIndexOfWidget(widgetId){
+        return  widgets.findIndex(function (widget) {
+            return widget.id == widgetId
+        });
+    }
     moveWidgetUp(widget) {
         const index = widgets.indexOf(widget);
         this.deleteWidget(widget.id);
@@ -48,6 +50,14 @@ class WidgetService {
 
     deleteWidget(widgetId) {
         widgets = widgets.filter(widget => widget.id !== widgetId);
+    }
+
+    updateTextForWidgets(widgetId, textChanged){
+        widgets[this.findIndexOfWidget(widgetId)].text = textChanged;
+    }
+
+    updateSizeForHeading(widgetId,size){
+        widgets[this.findIndexOfWidget(widgetId)].size = size;
     }
 
 }

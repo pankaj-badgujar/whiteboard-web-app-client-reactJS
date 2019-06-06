@@ -1,19 +1,25 @@
 import React from 'react'
 
-const HeadingWidget = ({classNameForPreview}) =>
+const HeadingWidget = ({classNameForPreview, headingTextChanged, sizeSelect, textSize, widgetId, textEntered}) =>
     <div>
         <br/>
         <div id="headingSection" className="p-4 border">
             <br />
             <div className="form-group row">
-                <input type="text" className="form-control" placeholder="Heading Text"
-                       id="heading2TextFld"/>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Heading Text"
+                    onChange={(event) => headingTextChanged(widgetId,event.target.value)}
+                    id="heading2TextFld"/>
             </div>
             <div className="form-group row">
-                <select className="custom-select">
-                    <option value="Heading1">Heading 1</option>
-                    <option value="Heading2">Heading 2</option>
-                    <option value="Heading3">Heading 3</option>
+                <select
+                    onChange={(event) => sizeSelect(widgetId,event.target.value)}
+                    className="custom-select">
+                    <option value="1">Heading 1</option>
+                    <option value="2">Heading 2</option>
+                    <option value="3">Heading 3</option>
                 </select>
             </div>
 
@@ -23,7 +29,11 @@ const HeadingWidget = ({classNameForPreview}) =>
             </div>
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <h1 className="row">Heading Text</h1>
+                {textSize == "1" ? <h1 className="row">{textEntered}</h1>
+                    :(textSize == "2" ? <h2 className="row">{textEntered}</h2>
+                        :<h3 className="row">{textEntered}</h3>)
+                }
+
             </div>
         </div>
     </div>

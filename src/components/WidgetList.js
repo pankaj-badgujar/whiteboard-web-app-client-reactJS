@@ -6,7 +6,10 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({preview, widgets, createWidget, selectWidget, previewSelect, deleteWidget, positionUp, positionDown}) =>
+const WidgetList = ({
+                        preview, widgets, createWidget, selectWidget, headingSizeChanged, previewSelect, deleteWidget, positionUp, positionDown,
+                        paragraphTextChanged, headingTextChanged
+                    }) =>
 
     <div>
         <div className={"row"}>
@@ -58,14 +61,39 @@ const WidgetList = ({preview, widgets, createWidget, selectWidget, previewSelect
                                     <div className="col-6">
                                         <select
                                             id={"selectWidgetToUpdate"}
-                                            onChange={(event) => selectWidget(widget.id,event.target.value)}
+                                            onChange={(event) => selectWidget(widget.id, event.target.value)}
                                             className="custom-select"
                                             role="widgetType">
-                                            <option value="HEADING" selected>Heading</option>
-                                            <option value="PARAGRAPH">Paragraph</option>
-                                            <option value="LIST">List</option>
-                                            <option value="IMAGE">Image</option>
-                                            <option value="LINK">Link</option>
+                                            {
+                                                widget.type === "HEADING" ?
+                                                    <option value="HEADING" selected>Heading</option> :
+                                                    <option value="HEADING">Heading</option>
+                                            }
+
+                                            {
+                                                widget.type === "PARAGRAPH" ?
+                                                    <option value="PARAGRAPH" selected>Paragraph</option> :
+                                                    <option value="PARAGRAPH">Paragraph</option>
+                                            }
+
+                                            {
+                                                widget.type === "LIST" ?
+                                                    <option value="LIST" selected>List</option> :
+                                                    <option value="LIST">List</option>
+                                            }
+
+                                            {
+                                                widget.type === "IMAGE" ?
+                                                    <option value="IMAGE" selected>Image</option> :
+                                                    <option value="IMAGE">Image</option>
+                                            }
+                                            {
+                                                widget.type === "LINK" ?
+                                                    <option value="LINK" selected>Link</option> :
+                                                    <option value="LINK">Link</option>
+                                            }
+
+
                                         </select>
                                     </div>
 
@@ -82,15 +110,34 @@ const WidgetList = ({preview, widgets, createWidget, selectWidget, previewSelect
 
 
                         {((widget.type === "HEADING" &&
-                                <HeadingWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                <HeadingWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    textEntered={widget.text}
+                                    headingTextChanged={headingTextChanged}
+                                    widgetId={widget.id}
+                                    textSize={widget.size}
+                                    sizeSelect={headingSizeChanged}
+                                />)
+
                             || (widget.type === "PARAGRAPH" &&
-                                <ParagraphWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                <ParagraphWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    widgetId={widget.id}
+                                    paragraphTextChanged={paragraphTextChanged}
+                                    textEntered={widget.text}
+                                />)
+
                             || (widget.type === "LIST" &&
-                                <ListWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                <ListWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+
                             || (widget.type === "LINK" &&
-                                <LinkWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                <LinkWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+
                             || (widget.type === "IMAGE" &&
-                                <ImageWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                <ImageWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}/>)
                         )}
                     </div>
                 }</li>

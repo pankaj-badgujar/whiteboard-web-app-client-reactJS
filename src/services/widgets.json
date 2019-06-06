@@ -3,12 +3,12 @@
     "id" : 1,
     "type": "HEADING",
     "size": 1,
-    "text": "The Document Object Model"
+    "text": "Heading text"
   },
   {
     "id" : 2,
     "type": "PARAGRAPH",
-    "text": "This topic introduces the DOM"
+    "text": "Paragraph text"
   },
   {
     "id" : 3,

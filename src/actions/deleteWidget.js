@@ -1,4 +1,3 @@
-import React from 'react'
 import {DELETE_WIDGET} from "../constants";
 
 export const deleteWidget = id => {

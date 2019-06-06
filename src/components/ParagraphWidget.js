@@ -1,13 +1,16 @@
 import React from 'react'
 
-const ParagraphWidget = ({classNameForPreview}) =>
+const ParagraphWidget = ({classNameForPreview,textEntered,paragraphTextChanged , widgetId}) =>
     <div>
         <br/>
         <div id="ParagraphSection" className="p-4 border">
 
             <br/>
             <div className="form-group row">
-                <textarea rows="3" className="form-control">Lorem ipsum</textarea>
+                <textarea
+                    rows="3"
+                    onChange={(event) => paragraphTextChanged(widgetId,event.target.value)}
+                    className="form-control">{textEntered}</textarea>
             </div>
 
             <div className="form-group row">
@@ -17,7 +20,7 @@ const ParagraphWidget = ({classNameForPreview}) =>
 
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <p className="row">Lorem ipsum</p>
+                <p className="row">{textEntered}</p>
 
             </div>
 

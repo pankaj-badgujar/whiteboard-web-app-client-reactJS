@@ -1,4 +1,3 @@
-import React from 'react'
 import {POSITION_UP} from "../constants";
 
 export const positionUp = widget => {
@@ -6,4 +5,4 @@ export const positionUp = widget => {
         type:POSITION_UP,
         widget:widget
     }
-}
+};
