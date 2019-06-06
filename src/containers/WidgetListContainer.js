@@ -6,7 +6,10 @@ import {previewSelect} from "../actions/previewSelect"
 import {deleteWidget} from "../actions/deleteWidget";
 
 const stateToPropertyMapper = state => (
-    {widgets: state.widgets}
+    {
+        widgets: state.widgets,
+        preview: state.preview
+    }
 );
 
 

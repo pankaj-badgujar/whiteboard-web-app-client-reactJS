@@ -5,7 +5,8 @@ let widgetService = WidgetService.getInstance();
 const widgetsArray = widgetService.findAllWidgets();
 
 let initialState = {
-    widgets: widgetsArray
+    widgets: widgetsArray,
+    preview: "off"
 };
 
 let idAutoIncrement = widgetsArray.length + 1;
@@ -13,8 +14,9 @@ let idAutoIncrement = widgetsArray.length + 1;
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case PREVIEW_SELECT:
-            alert('now did select');
-
+            return state.preview == "off" ? {widgets :state.widgets,preview : "on"}
+            : {widgets :state.widgets,preview : "off"};
+            
         case CREATE_WIDGET:
             let widgetTemplate = {
                 id: idAutoIncrement++,
@@ -23,12 +25,12 @@ const widgetReducer = (state = initialState, action) => {
                 text: "The Document Object Model"
             };
             widgetService.createWidget(widgetTemplate);
-            return {widgets: [...state.widgets, widgetTemplate]};
+            return {widgets: [...state.widgets, widgetTemplate], preview: "off"};
 
         case DELETE_WIDGET:
             widgetService.deleteWidget(action.id);
             return {
-                widgets: state.widgets.filter(widget => widget.id !== action.id)
+                widgets: state.widgets.filter(widget => widget.id !== action.id), preview: "off"
             };
         default:
             return state;

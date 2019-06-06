@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeadingWidget = () =>
+const HeadingWidget = ({classNameForPreview}) =>
     <div>
         <br/>
         <div id="headingSection" className="p-4 border">
@@ -21,7 +21,7 @@ const HeadingWidget = () =>
                 <input type="text" className="form-control" id="widget1NameFld"
                        placeholder="Widget name"/>
             </div>
-            <div className={"d-none"}>
+            <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
                 <h1 className="row">Heading Text</h1>
             </div>

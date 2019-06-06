@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListWidget = () =>
+const ListWidget = ({classNameForPreview}) =>
     <div>
         <br/>
 
@@ -24,7 +24,7 @@ a separate row</textarea>
                        placeholder="Widget name"/>
             </div>
 
-            <div className={"d-none"}>
+            <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
                 <ul>
                     <li>Put each</li>

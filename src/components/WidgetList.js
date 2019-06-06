@@ -6,7 +6,7 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({widgets, createWidget, previewSelect, deleteWidget}) =>
+const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}) =>
 
     <div>
         <div className={"row"}>
@@ -30,7 +30,7 @@ const WidgetList = ({widgets, createWidget, previewSelect, deleteWidget}) =>
                         <div className="row mx-4">
 
                             <div className="col-4 ">
-                                <h5>{widget.type} WIDGET = {widget.id}</h5>
+                                <h5>{widget.type} WIDGET</h5>
                             </div>
                             <div className="col-2">
                                 <label></label>
@@ -71,11 +71,11 @@ const WidgetList = ({widgets, createWidget, previewSelect, deleteWidget}) =>
                         </div>
 
 
-                        {((widget.type === "HEADING" && <HeadingWidget/>)
-                        || (widget.type === "PARAGRAPH" && <ParagraphWidget/>)
-                        || (widget.type === "LIST" && <ListWidget/>)
-                        || (widget.type === "LINK" && <LinkWidget/>)
-                        || (widget.type === "IMAGE" && <ImageWidget/>)
+                        {((widget.type === "HEADING" && <HeadingWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
+                        || (widget.type === "PARAGRAPH" && <ParagraphWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
+                        || (widget.type === "LIST" && <ListWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
+                        || (widget.type === "LINK" && <LinkWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
+                        || (widget.type === "IMAGE" && <ImageWidget classNameForPreview={preview == "on"?"":"d-none"}/>)
                         )}
                     </div>
                 }</li>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LinkWidget = () =>
+const LinkWidget = ({classNameForPreview}) =>
     <div>
         <br/>
         <div id="LinkSection" className="p-4 border">
@@ -17,7 +17,7 @@ const LinkWidget = () =>
                 <input type="text" className="form-control" id="widgetNameFld"
                        placeholder="Widget name"/>
             </div>
-            <div className={"d-none"}>
+            <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
                 <a href="#">Link text</a>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ParagraphWidget = () =>
+const ParagraphWidget = ({classNameForPreview}) =>
     <div>
         <br/>
         <div id="ParagraphSection" className="p-4 border">
@@ -15,7 +15,7 @@ const ParagraphWidget = () =>
                        placeholder="Widget name"/>
             </div>
 
-            <div className={"d-none"}>
+            <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
                 <p className="row">Lorem ipsum</p>
 
