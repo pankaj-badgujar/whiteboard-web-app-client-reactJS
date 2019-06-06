@@ -7,3 +7,5 @@ export const SELECT_WIDGET = 'select_widget';
 export const PARAGRAPH_TEXT_CHANGED = 'paragraph_text_changed';
 export const HEADING_TEXT_CHANGED = 'heading_text_changed';
 export const HEADING_SIZE_CHANGED = 'heading_size_changed';
+export const LIST_TEXT_CHANGED = 'list_text_changed';
+export const LIST_TYPE_CHANGED = 'list_type_changed';

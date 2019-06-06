@@ -28,7 +28,52 @@ class WidgetService {
     }
 
     selectWidget(widgetId, widgetType) {
-        widgets[this.findIndexOfWidget(widgetId)].type=widgetType;
+        const index = this.findIndexOfWidget(widgetId);
+        const newWidget = this.getWidgetTemplateFromWidgetType(widgetId,widgetType);
+        this.deleteWidget(widgetId);
+        widgets.splice(index,0,newWidget);
+    }
+
+    getWidgetTemplateFromWidgetType(idToBeAssigned,widgetType){
+        switch(widgetType){
+            case "HEADING":
+                return {
+                    "id" : idToBeAssigned,
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "Heading text"
+                };
+            case "PARAGRAPH":
+                return {
+                    "id" : idToBeAssigned,
+                    "type": "PARAGRAPH",
+                    "text": "Paragraph text"
+                };
+            case "LIST":
+                return {
+                    "id" : idToBeAssigned,
+                    "type": "LIST",
+                    "listType" : "unordered",
+                    "items": "Enter,one,list,per,item"
+                };
+
+            case "IMAGE":
+                return {
+                    "id" : idToBeAssigned,
+                    "type": "IMAGE",
+                    "src": "https://picsum.photos/200"
+                };
+
+            case "LINK":
+                return {
+                    "id" : idToBeAssigned,
+                    "type": "LINK",
+                    "text": "Link Text",
+                    "href": "Link URL"
+                };
+            default:
+                return null;
+        }
     }
 
     findIndexOfWidget(widgetId){
@@ -56,8 +101,16 @@ class WidgetService {
         widgets[this.findIndexOfWidget(widgetId)].text = textChanged;
     }
 
+    updateTextForList(widgetId,textChanged){
+        widgets[this.findIndexOfWidget(widgetId)].items = textChanged;
+    }
+
     updateSizeForHeading(widgetId,size){
         widgets[this.findIndexOfWidget(widgetId)].size = size;
+    }
+
+    updateListTypeForList(widgetId,listType){
+        widgets[this.findIndexOfWidget(widgetId)].listType = listType;
     }
 
 }

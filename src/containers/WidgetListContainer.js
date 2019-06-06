@@ -10,6 +10,8 @@ import {selectWidget} from "../actions/selectWidget";
 import {paragraphTextChanged} from "../actions/paragraphTextChanged";
 import {headingTextChanged} from "../actions/headingTextChanged";
 import {headingSizeChanged} from "../actions/headingSizeChanged";
+import {listTextChanged} from "../actions/listTextChanged";
+import {listTypeChanged} from "../actions/listTypeChanged";
 
 const stateToPropertyMapper = state => (
     {
@@ -29,7 +31,9 @@ const dispatcherToPropertyMapper = dispatch => (
             selectWidget:(widgetId,widgetType) =>dispatch(selectWidget(widgetId,widgetType)),
             paragraphTextChanged: (widgetId,textChanged) => dispatch(paragraphTextChanged(widgetId,textChanged)),
             headingTextChanged: (widgetId,textChanged) => dispatch(headingTextChanged(widgetId,textChanged)),
-            headingSizeChanged: (widgetId,size) => dispatch(headingSizeChanged(widgetId,size))
+            headingSizeChanged: (widgetId,size) => dispatch(headingSizeChanged(widgetId,size)),
+            listTextChanged: (widgetId,textChanged) => dispatch(listTextChanged(widgetId,textChanged)),
+            listTypeChanged:(widgetId,listType) => dispatch(listTypeChanged(widgetId,listType))
         }
     )
 ;

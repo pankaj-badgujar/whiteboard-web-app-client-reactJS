@@ -1,6 +1,6 @@
 import {
     CREATE_WIDGET,
-    DELETE_WIDGET, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED,
+    DELETE_WIDGET, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, LIST_TEXT_CHANGED, LIST_TYPE_CHANGED,
     PARAGRAPH_TEXT_CHANGED,
     POSITION_DOWN,
     POSITION_UP,
@@ -55,7 +55,6 @@ const widgetReducer = (state = initialState, action) => {
             return {widgets: [...state.widgets], preview: state.preview};
 
         case SELECT_WIDGET:
-            console.log("here first : ", action.id, action.widgetType);
             widgetService.selectWidget(action.id, action.widgetType);
 
             state.widgets = widgetService.findAllWidgets();
@@ -75,6 +74,20 @@ const widgetReducer = (state = initialState, action) => {
         case HEADING_SIZE_CHANGED:
 
             widgetService.updateSizeForHeading(action.id,action.size);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets: [...state.widgets], preview: state.preview};
+
+        case LIST_TEXT_CHANGED:
+
+            widgetService.updateTextForList(action.id,action.textChanged);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets: [...state.widgets], preview: state.preview};
+
+        case LIST_TYPE_CHANGED:
+
+            widgetService.updateListTypeForList(action.id,action.listType);
 
             state.widgets = widgetService.findAllWidgets();
             return {widgets: [...state.widgets], preview: state.preview};

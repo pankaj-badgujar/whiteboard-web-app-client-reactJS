@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListWidget = ({classNameForPreview}) =>
+const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged, listType, listTypeChanged}) =>
     <div>
         <br/>
 
@@ -8,14 +8,17 @@ const ListWidget = ({classNameForPreview}) =>
 
             <br/>
             <div className="form-group row">
-						<textarea rows="3" className="form-control">Put each
-item in
-a separate row</textarea>
+						<textarea
+                            rows="3"
+                            onChange={(event) => listTextChanged(widgetId, event.target.value)}
+                            className="form-control">{textEntered}</textarea>
             </div>
             <div className="form-group row">
-                <select className="custom-select">
-                    <option value="Heading1">Unordered List</option>
-                    <option value="Heading2">Ordered List</option>
+                <select
+                    onChange={(event) => listTypeChanged(widgetId,event.target.value)}
+                    className="custom-select">
+                    <option value="unordered">Unordered List</option>
+                    <option value="ordered">Ordered List</option>
                 </select>
             </div>
 
@@ -26,11 +29,11 @@ a separate row</textarea>
 
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <ul>
-                    <li>Put each</li>
-                    <li>item in</li>
-                    <li>a separate row</li>
-                </ul>
+                {
+                    listType === "ordered"
+                        ? <ol>{(textEntered.split(',')).map(item => <li>{item}</li>)}</ol>
+                        : <ul>{(textEntered.split(',')).map(item => <li>{item}</li>)}</ul>
+                }
             </div>
         </div>
     </div>
