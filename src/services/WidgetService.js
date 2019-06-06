@@ -27,20 +27,23 @@ class WidgetService {
 
     }
 
-    updateWidget(widgetId, widget) {
-
+    selectWidget(widgetId, widgetType) {
+        const index = widgets.findIndex(function (widget) {
+            return widget.id == widgetId
+        });
+        widgets[index].type=widgetType;
     }
 
-    moveWidgetUp(widget){
+    moveWidgetUp(widget) {
         const index = widgets.indexOf(widget);
         this.deleteWidget(widget.id);
-        widgets.splice(index-1,0,widget);
+        widgets.splice(index - 1, 0, widget);
     }
 
-    moveWidgetDown(widget){
+    moveWidgetDown(widget) {
         const index = widgets.indexOf(widget);
         this.deleteWidget(widget.id);
-        widgets.splice(index+1,0,widget);
+        widgets.splice(index + 1, 0, widget);
     }
 
     deleteWidget(widgetId) {

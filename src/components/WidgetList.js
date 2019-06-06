@@ -6,7 +6,7 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({preview, widgets, createWidget, previewSelect, deleteWidget, positionUp, positionDown}) =>
+const WidgetList = ({preview, widgets, createWidget, selectWidget, previewSelect, deleteWidget, positionUp, positionDown}) =>
 
     <div>
         <div className={"row"}>
@@ -56,12 +56,16 @@ const WidgetList = ({preview, widgets, createWidget, previewSelect, deleteWidget
                                     </div>}
                                     <label className="col-1"></label>
                                     <div className="col-6">
-                                        <select className="custom-select" role="widgetType">
-                                            <option value="Heading" selected>Heading</option>
-                                            <option value="Paragraph">Paragraph</option>
-                                            <option value="List">List</option>
-                                            <option value="Image">Image</option>
-                                            <option value="Link">Link</option>
+                                        <select
+                                            id={"selectWidgetToUpdate"}
+                                            onChange={(event) => selectWidget(widget.id,event.target.value)}
+                                            className="custom-select"
+                                            role="widgetType">
+                                            <option value="HEADING" selected>Heading</option>
+                                            <option value="PARAGRAPH">Paragraph</option>
+                                            <option value="LIST">List</option>
+                                            <option value="IMAGE">Image</option>
+                                            <option value="LINK">Link</option>
                                         </select>
                                     </div>
 

@@ -86,7 +86,7 @@ class CourseEditor extends React.Component {
                             />
                             <br/>
                             <Provider store={store}>
-                                <WidgetListContainer/>
+                                <WidgetListContainer />
                             </Provider>
                         </div>
                     </div>

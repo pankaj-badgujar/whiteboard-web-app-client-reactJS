@@ -1,4 +1,4 @@
-import {CREATE_WIDGET, DELETE_WIDGET, POSITION_DOWN, POSITION_UP, PREVIEW_SELECT} from "../constants";
+import {CREATE_WIDGET, DELETE_WIDGET, POSITION_DOWN, POSITION_UP, PREVIEW_SELECT, SELECT_WIDGET} from "../constants";
 import WidgetService from "../services/WidgetService";
 let widgetService = WidgetService.getInstance();
 const widgetsArray = widgetService.findAllWidgets();
@@ -41,6 +41,13 @@ const widgetReducer = (state = initialState, action) => {
 
         case POSITION_DOWN:
             widgetService.moveWidgetDown(action.widget);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets:[...state.widgets],preview: "off"};
+
+        case SELECT_WIDGET:
+            console.log("here first : " , action.id , action.widgetType);
+            widgetService.selectWidget(action.id,action.widgetType);
 
             state.widgets = widgetService.findAllWidgets();
             return {widgets:[...state.widgets],preview: "off"};
