@@ -14,24 +14,24 @@ class WidgetService {
         return this.myInstance;
     }
 
-    createWidget(widget){
+    createWidget(widget) {
         widgets.push(widget);
     }
 
-    findAllWidgets(){
+    findAllWidgets() {
         return widgets;
     }
 
-    findWidget(widgetId){
+    findWidget(widgetId) {
 
     }
 
-    updateWidget(widgetId, widget){
+    updateWidget(widgetId, widget) {
 
     }
 
-    deleteWidget(widgetId){
-        widgets = widgets.filter( widget => widget.id !== widgetId);
+    deleteWidget(widgetId) {
+        widgets = widgets.filter(widget => widget.id !== widgetId);
     }
 
 }

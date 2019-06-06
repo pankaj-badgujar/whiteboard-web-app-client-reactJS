@@ -6,7 +6,7 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}) =>
+const WidgetList = ({preview, widgets, createWidget, previewSelect, deleteWidget, positionUp, positionDown}) =>
 
     <div>
         <div className={"row"}>
@@ -26,7 +26,7 @@ const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}
             {widgets.map((widget) => (
                 <li key={widget.id} className={"borderlist"}>{
                     <div>
-                        <br />
+                        <br/>
                         <div className="row mx-4">
 
                             <div className="col-4 ">
@@ -37,14 +37,20 @@ const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}
                             </div>
                             <div className="col-6">
                                 <div className="row">
-                                    {widget !== widgets[0] &&<div className="col-1">
-                                        <button type="button" className="btn btn-warning">
+                                    {widget !== widgets[0] && <div className="col-1">
+                                        <button
+                                            type="button"
+                                            onClick={() => positionUp(widget)}
+                                            className="btn btn-warning">
                                             <i className="fa fa-arrow-circle-up"></i>
                                         </button>
                                     </div>}
                                     <label className="col-1"></label>
                                     {widget !== widgets[widgets.length - 1] && <div className="col-1">
-                                        <button type="button" className="btn btn-warning">
+                                        <button
+                                            type="button"
+                                            onClick={() => positionDown(widget)}
+                                            className="btn btn-warning">
                                             <i className="fa fa-arrow-circle-down"></i>
                                         </button>
                                     </div>}
@@ -71,11 +77,16 @@ const WidgetList = ({preview,widgets, createWidget, previewSelect, deleteWidget}
                         </div>
 
 
-                        {((widget.type === "HEADING" && <HeadingWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
-                        || (widget.type === "PARAGRAPH" && <ParagraphWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
-                        || (widget.type === "LIST" && <ListWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
-                        || (widget.type === "LINK" && <LinkWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
-                        || (widget.type === "IMAGE" && <ImageWidget classNameForPreview={preview === "on"?"":"d-none"}/>)
+                        {((widget.type === "HEADING" &&
+                                <HeadingWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                            || (widget.type === "PARAGRAPH" &&
+                                <ParagraphWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                            || (widget.type === "LIST" &&
+                                <ListWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                            || (widget.type === "LINK" &&
+                                <LinkWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                            || (widget.type === "IMAGE" &&
+                                <ImageWidget classNameForPreview={preview === "on" ? "" : "d-none"}/>)
                         )}
                     </div>
                 }</li>
