@@ -1,0 +1,30 @@
+[
+  {
+    "id" : 1,
+    "type": "HEADING",
+    "size": 1,
+    "text": "Heading text"
+  },
+  {
+    "id" : 2,
+    "type": "PARAGRAPH",
+    "text": "Paragraph text"
+  },
+  {
+    "id" : 3,
+    "type": "LIST",
+    "listType" : "unordered",
+    "items": "Enter\none\nlist\nper\nitem"
+  },
+  {
+    "id" : 4,
+    "type": "IMAGE",
+    "text": "Image URL"
+  },
+  {
+    "id" : 5,
+    "type": "LINK",
+    "text": "Link Text",
+    "href": "Link URL"
+  }
+]

@@ -1,338 +1,179 @@
 import React from 'react'
+import '../styles/widgetList.style.client.css'
+import HeadingWidget from "./HeadingWidget";
+import ParagraphWidget from "./ParagraphWidget";
+import ListWidget from "./ListWidget";
+import LinkWidget from "./LinkWidget";
+import ImageWidget from "./ImageWidget";
 
-class WidgetList extends React.Component{
+const WidgetList = ({
+                        preview, widgets, createWidget, selectWidget, headingSizeChanged, previewSelect, deleteWidget, positionUp, positionDown,
+                        paragraphTextChanged, headingTextChanged, listTextChanged, listTypeChanged, imageTextChanged,
+                        linkURLChanged, linkTextChanged
+                    }) =>
 
-    render() {
-        return(
-            <div>
-                <div id="headingSection" className="p-4 border border-dark">
-                    <div className="row">
+    <div>
+        <div className={"row"}>
+            <label className={"col-10"}></label>
 
-                        <div className="col-3 ">
-                            <h5>Heading widget</h5>
-                        </div>
-                        <div className="col-3">
-                            <label></label>
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-up"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-down"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-6">
-                                    <select className="custom-select" role="widgetType">
-                                        <option value="Heading" selected>Heading</option>
-                                        <option value="Paragraph">Paragraph</option>
-                                        <option value="List">List</option>
-                                        <option value="Image">Image</option>
-                                        <option value="Link">Link</option>
-                                    </select>
-                                </div>
+            <label className={"form-label col-1 px-1"}>Preview</label>
 
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="fa fa-times"></i>
-                                    </button>
+            <label className="switch col-1" htmlFor="checkbox">
+                <input type="checkbox"
+                       id="checkbox"
+                       onChange={previewSelect}/>
+                <div className="slider round"></div>
+            </label>
+        </div>
+
+        <ul className={"noBulletsForList"}>
+            {widgets.map((widget) => (
+                <li key={widget.id} className={"borderlist"}>{
+                    <div>
+                        <br/>
+                        <div className="row mx-4">
+
+                            <div className="col-4 ">
+                                <h5>{widget.type} WIDGET</h5>
+                            </div>
+                            <div className="col-2">
+                                <label></label>
+                            </div>
+                            <div className="col-6">
+                                <div className="row">
+                                    {widget !== widgets[0] && <div className="col-1">
+                                        <button
+                                            type="button"
+                                            onClick={() => positionUp(widget)}
+                                            className="btn btn-warning">
+                                            <i className="fa fa-arrow-circle-up"></i>
+                                        </button>
+                                    </div>}
+                                    <label className="col-1"></label>
+                                    {widget !== widgets[widgets.length - 1] && <div className="col-1">
+                                        <button
+                                            type="button"
+                                            onClick={() => positionDown(widget)}
+                                            className="btn btn-warning">
+                                            <i className="fa fa-arrow-circle-down"></i>
+                                        </button>
+                                    </div>}
+                                    <label className="col-1"></label>
+                                    <div className="col-6">
+                                        <select
+                                            id={"selectWidgetToUpdate"}
+                                            onChange={(event) => selectWidget(widget.id, event.target.value)}
+                                            className="custom-select"
+                                            role="widgetType">
+                                            {
+                                                widget.type === "HEADING" ?
+                                                    <option value="HEADING" selected>Heading</option> :
+                                                    <option value="HEADING">Heading</option>
+                                            }
+
+                                            {
+                                                widget.type === "PARAGRAPH" ?
+                                                    <option value="PARAGRAPH" selected>Paragraph</option> :
+                                                    <option value="PARAGRAPH">Paragraph</option>
+                                            }
+
+                                            {
+                                                widget.type === "LIST" ?
+                                                    <option value="LIST" selected>List</option> :
+                                                    <option value="LIST">List</option>
+                                            }
+
+                                            {
+                                                widget.type === "IMAGE" ?
+                                                    <option value="IMAGE" selected>Image</option> :
+                                                    <option value="IMAGE">Image</option>
+                                            }
+                                            {
+                                                widget.type === "LINK" ?
+                                                    <option value="LINK" selected>Link</option> :
+                                                    <option value="LINK">Link</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+
+                                    <div className="col-1">
+                                        <button
+                                            onClick={() => deleteWidget(widget.id)}
+                                            type="button" className="btn btn-danger">
+                                            <i className="fa fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        {((widget.type === "HEADING" &&
+                                <HeadingWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    textEntered={widget.text}
+                                    headingTextChanged={headingTextChanged}
+                                    widgetId={widget.id}
+                                    textSize={widget.size}
+                                    sizeSelect={headingSizeChanged}
+                                />)
+
+                            || (widget.type === "PARAGRAPH" &&
+                                <ParagraphWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    widgetId={widget.id}
+                                    paragraphTextChanged={paragraphTextChanged}
+                                    textEntered={widget.text}
+                                />)
+
+                            || (widget.type === "LIST" &&
+                                <ListWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    widgetId={widget.id}
+                                    listTextChanged = {listTextChanged}
+                                    textEntered={widget.items}
+                                    listType={widget.listType}
+                                    listTypeChanged={listTypeChanged}
+                                />)
+
+                            || (widget.type === "LINK" &&
+                                <LinkWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    linkURLChanged={linkURLChanged}
+                                    linkTextChanged={linkTextChanged}
+                                    widgetId={widget.id}
+                                    url={widget.href}
+                                    text={widget.text}
+                                />)
+
+                            || (widget.type === "IMAGE" &&
+                                <ImageWidget
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    widgetId={widget.id}
+                                    imageURL={widget.text}
+                                    imageTextChanged={imageTextChanged}
+                                />)
+                        )}
                     </div>
-
-                    <p>
-                    </p>
-
-                    <div className="form-group row">
-                        <input type="text" className="form-control" placeholder="Heading Text"
-                               id="heading2TextFld"/>
-                    </div>
-                    <div className="form-group row">
-                        <select className="custom-select">
-                            <option value="Heading1">Heading 1</option>
-                            <option value="Heading2">Heading 2</option>
-                            <option value="Heading3">Heading 3</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group row">
-                        <input type="text" className="form-control" id="widget1NameFld"
-                               placeholder="Widget name"/>
-                    </div>
-
-                    <h5 className="row">Preview</h5>
-                    <h1 className="row">Heading Text</h1>
-                </div>
-
-                <p>
-                </p>
-                <div id="ParagraphSection" className="p-4 border border-dark">
-                    <div className="row">
-
-                        <div className="col-3">
-                            <h5>Paragraph widget</h5>
-                        </div>
-                        <div className="col-3">
-                            <label></label>
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-up"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-down"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-6">
-                                    <select className="custom-select" role="widgetType">
-                                        <option value="Heading">Heading</option>
-                                        <option value="Paragraph" selected>Paragraph</option>
-                                        <option value="List">List</option>
-                                        <option value="Image">Image</option>
-                                        <option value="Link">Link</option>
-                                    </select>
-                                </div>
-
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p>
-                    </p>
-                    <div className="form-group row">
-                        <textarea rows="3" className="form-control">Lorem ipsum</textarea>
-                    </div>
-
-                    <div className="form-group row">
-                        <input type="text" className="form-control" id="widgetNameParaFld"
-                               placeholder="Widget name"/>
-                    </div>
-
-                    <h5 className="row">Preview</h5>
-                    <p className="row">Lorem ipsum</p>
-                </div>
-                <p>
-                </p>
-                <div id="ListSection" className="p-4 border border-dark">
-                    <div className="row">
-
-                        <div className="col-3">
-                            <h5>List widget</h5>
-                        </div>
-                        <div className="col-3">
-                            <label></label>
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-up"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-down"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-6">
-                                    <select className="custom-select" role="widgetType">
-                                        <option value="Heading">Heading</option>
-                                        <option value="Paragraph">Paragraph</option>
-                                        <option value="List" selected>List</option>
-                                        <option value="Image">Image</option>
-                                        <option value="Link">Link</option>
-                                    </select>
-                                </div>
-
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p>
-                    </p>
-                    <div className="form-group row">
-						<textarea rows="3" className="form-control">Put each
-item in
-a separate row</textarea>
-                    </div>
-                    <div className="form-group row">
-                        <select className="custom-select">
-                            <option value="Heading1">Unordered List</option>
-                            <option value="Heading2">Ordered List</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group row">
-                        <input type="text" className="form-control" id="widget2NameFld"
-                               placeholder="Widget name"/>
-                    </div>
-
-                    <h5 className="row">Preview</h5>
-                    <ul>
-                        <li>Put each</li>
-                        <li>item in</li>
-                        <li>a separate row</li>
-                    </ul>
-                </div>
-                <p>
-                </p>
-                <div id="ImageSection" className="p-4 border border-dark">
-                    <div className="row">
-
-                        <div className="col-3">
-                            <h5>Image widget</h5>
-                        </div>
-                        <div className="col-3">
-                            <label></label>
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-up"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-down"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-6">
-                                    <select className="custom-select" role="widgetType">
-                                        <option value="Heading">Heading</option>
-                                        <option value="Paragraph">Paragraph</option>
-                                        <option value="List">List</option>
-                                        <option value="Image" selected>Image</option>
-                                        <option value="Link">Link</option>
-                                    </select>
-                                </div>
-
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p>
-                    </p>
-                    <div className="form-group row">
-                        <input type="text" className="form-control"
-                               value="http://lorempixel.com/300/150/" id="headingTextFld"/>
-                    </div>
+                }</li>
+            ))}
+        </ul>
 
 
-                    <div className="form-group row">
-                        <input type="text" className="form-control" id="widget3NameFld"
-                               placeholder="Widget name"/>
-                    </div>
-
-                    <h5 className="row">Preview</h5>
-                    <img src="http://lorempixel.com/300/150/"/>
-                </div>
-                <p>
-                </p>
-                <div id="LinkSection" className="p-4 border border-dark">
-                    <div className="row">
-
-                        <div className="col-3">
-                            <h5>Link widget</h5>
-                        </div>
-                        <div className="col-3">
-                            <label></label>
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-up"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-warning">
-                                        <i className="fa fa-arrow-circle-down"></i>
-                                    </button>
-                                </div>
-                                <label className="col-1"></label>
-                                <div className="col-6">
-                                    <select className="custom-select" role="widgetType">
-                                        <option value="Heading">Heading</option>
-                                        <option value="Paragraph">Paragraph</option>
-                                        <option value="List">List</option>
-                                        <option value="Image">Image</option>
-                                        <option value="Link" selected>Link</option>
-                                    </select>
-                                </div>
-
-                                <div className="col-1">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p>
-                    </p>
-                    <div className="form-group row">
-                        <input type="text" className="form-control" placeholder="Link URL"
-                               id="linkURLFld"/>
-                    </div>
-                    <div className="form-group row">
-                        <input type="text" className="form-control" placeholder="Link Text"
-                               id="linkTextFld"/>
-                    </div>
-                    <div className="form-group row">
-                        <input type="text" className="form-control" id="widgetNameFld"
-                               placeholder="Widget name"/>
-                    </div>
-
-                    <h5 className="row">Preview</h5>
-                    <a href="#">Link text</a>
-                </div>
-                <ul className="nav flex-column nav-pills">
-                    <li className="nav-item text-right">
-                        <button type="button" className="btn btn-danger rounded-circle ">
-                            <i className="fa fa-plus"></i>
-                        </button>
-                    </li>
-                </ul>
+        <div className={"row"}>
+            <label className={"col-11"}></label>
+            <div className="d-flex float-right my-auto col-1">
+                <button
+                    onClick={createWidget}
+                    className="btn btn-danger rounded-circle ">
+                    <i className="fa fa-plus"></i>
+                </button>
             </div>
-
-        );
-
-    }
-}
+        </div>
+        <br/>
+        <br/>
+    </div>
 
 export default WidgetList

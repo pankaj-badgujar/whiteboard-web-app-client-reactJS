@@ -3,46 +3,54 @@ import ModuleList from "../components/ModuleList";
 import LessonTabs from "../components/LessonTabs";
 import TopicPills from "../components/TopicPills";
 import CourseService from '../services/CourseService.js'
-import WidgetList from "../components/WidgetList";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import WidgetListContainer from "./WidgetListContainer";
+import Provider from "react-redux/es/components/Provider";
+import {createStore} from "redux";
+import widgetReducer from '../reducers/WidgetReducer';
+
 
 let courseService = CourseService.getInstance();
+
+
+const store = createStore(widgetReducer);
 
 class CourseEditor extends React.Component {
 
     constructor(props) {
         super(props);
 
+
         const courseExtracted = courseService.findCourseById(props.match.params.courseId);
-        if (courseExtracted.modules.length === 0){
+        if (courseExtracted.modules.length === 0) {
             console.log("empty")
         }
         this.state = {
             courseId: props.match.params.courseId,
             course: courseExtracted,
-            selectedModule : courseExtracted.modules[0],
-            selectedLesson : courseExtracted.modules[0].lessons[0],
-            selectedTopic : courseExtracted.modules[0].lessons[0].topics[0]
+            selectedModule: courseExtracted.modules[0],
+            selectedLesson: courseExtracted.modules[0].lessons[0],
+            selectedTopic: courseExtracted.modules[0].lessons[0].topics[0]
         }
 
     }
 
     selectTopic = topic => {
         this.setState({
-            selectedTopic : topic
+            selectedTopic: topic
         })
     }
 
 
     selectLesson = lesson => {
         this.setState({
-            selectedLesson : lesson,
-            selectedTopic : lesson.topics[0]
+            selectedLesson: lesson,
+            selectedTopic: lesson.topics[0]
         })
     }
     selectModule = module => {
         this.setState({
-            selectedModule  : module,
+            selectedModule: module,
             selectedLesson: module.lessons[0],
             selectedTopic: module.lessons[0].topics[0]
 
@@ -67,7 +75,7 @@ class CourseEditor extends React.Component {
                         <div className="col-8">
                             <LessonTabs
                                 lessons={this.state.selectedModule.lessons}
-                                selectedLesson = {this.state.selectedLesson}
+                                selectedLesson={this.state.selectedLesson}
                                 selectLesson={this.selectLesson}
                                 addLesson={this.addLesson}
                             />
@@ -76,6 +84,10 @@ class CourseEditor extends React.Component {
                                 selectedTopic={this.state.selectedTopic}
                                 selectTopic={this.selectTopic}
                             />
+                            <br/>
+                            <Provider store={store}>
+                                <WidgetListContainer />
+                            </Provider>
                         </div>
                     </div>
                 </div>

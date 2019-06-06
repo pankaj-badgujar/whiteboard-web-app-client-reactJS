@@ -1,6 +1,6 @@
 import coursesData from './courses.json'
 
-let courses = coursesData
+let courses = coursesData;
 
 class CourseService {
 
