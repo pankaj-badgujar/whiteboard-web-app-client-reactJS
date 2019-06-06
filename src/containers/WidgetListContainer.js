@@ -12,6 +12,7 @@ import {headingTextChanged} from "../actions/headingTextChanged";
 import {headingSizeChanged} from "../actions/headingSizeChanged";
 import {listTextChanged} from "../actions/listTextChanged";
 import {listTypeChanged} from "../actions/listTypeChanged";
+import {imageTextChanged} from "../actions/imageTextChanged";
 
 const stateToPropertyMapper = state => (
     {
@@ -33,7 +34,8 @@ const dispatcherToPropertyMapper = dispatch => (
             headingTextChanged: (widgetId,textChanged) => dispatch(headingTextChanged(widgetId,textChanged)),
             headingSizeChanged: (widgetId,size) => dispatch(headingSizeChanged(widgetId,size)),
             listTextChanged: (widgetId,textChanged) => dispatch(listTextChanged(widgetId,textChanged)),
-            listTypeChanged:(widgetId,listType) => dispatch(listTypeChanged(widgetId,listType))
+            listTypeChanged:(widgetId,listType) => dispatch(listTypeChanged(widgetId,listType)),
+            imageTextChanged:(widgetId,textChanged) => dispatch(imageTextChanged(widgetId,textChanged))
         }
     )
 ;

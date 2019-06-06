@@ -61,7 +61,7 @@ class WidgetService {
                 return {
                     "id" : idToBeAssigned,
                     "type": "IMAGE",
-                    "src": "https://picsum.photos/200"
+                    "text": "Image URL"
                 };
 
             case "LINK":

@@ -33,7 +33,6 @@ class ModuleList extends React.Component {
     }
 
     deleteModule = (moduleId) => {
-        console.log("2")
         courseService.deleteModule(this.props.courseId, moduleId)
         this.setState({
             modules : courseService.findCourseById(this.props.courseId).modules

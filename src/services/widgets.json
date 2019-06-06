@@ -19,7 +19,7 @@
   {
     "id" : 4,
     "type": "IMAGE",
-    "src": "https://picsum.photos/200"
+    "text": "Image URL"
   },
   {
     "id" : 5,
