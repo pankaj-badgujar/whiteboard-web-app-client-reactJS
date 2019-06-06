@@ -1,6 +1,5 @@
 import {CREATE_WIDGET, DELETE_WIDGET, POSITION_DOWN, POSITION_UP, PREVIEW_SELECT} from "../constants";
 import WidgetService from "../services/WidgetService";
-
 let widgetService = WidgetService.getInstance();
 const widgetsArray = widgetService.findAllWidgets();
 
@@ -26,20 +25,25 @@ const widgetReducer = (state = initialState, action) => {
             };
 
             widgetService.createWidget(widgetTemplate);
-            return {widgets: [...state.widgets, widgetTemplate], preview: "off"};
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets: [...state.widgets], preview: "off"};
 
         case DELETE_WIDGET:
             widgetService.deleteWidget(action.id);
-            return {
-                widgets: state.widgets.filter(widget => widget.id !== action.id), preview: "off"
-            };
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets:[...state.widgets],preview: "off"};
 
         case POSITION_UP:
-            alert("up" + action.widget.id);
-            return state;
+            widgetService.moveWidgetUp(action.widget);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets:[...state.widgets],preview: "off"};
+
         case POSITION_DOWN:
-            alert("down" + action.widget.id);
-            return state;
+            widgetService.moveWidgetDown(action.widget);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets:[...state.widgets],preview: "off"};
         default:
             return state;
     }

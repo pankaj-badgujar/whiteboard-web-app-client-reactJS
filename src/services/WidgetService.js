@@ -18,6 +18,7 @@ class WidgetService {
         widgets.push(widget);
     }
 
+
     findAllWidgets() {
         return widgets;
     }
@@ -28,6 +29,18 @@ class WidgetService {
 
     updateWidget(widgetId, widget) {
 
+    }
+
+    moveWidgetUp(widget){
+        const index = widgets.indexOf(widget);
+        this.deleteWidget(widget.id);
+        widgets.splice(index-1,0,widget);
+    }
+
+    moveWidgetDown(widget){
+        const index = widgets.indexOf(widget);
+        this.deleteWidget(widget.id);
+        widgets.splice(index+1,0,widget);
     }
 
     deleteWidget(widgetId) {
