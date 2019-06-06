@@ -30,7 +30,7 @@ const widgetReducer = (state = initialState, action) => {
                 id: idAutoIncrement++,
                 type: "HEADING",
                 size: 1,
-                text: "The Document Object Model"
+                text: "Heading text"
             };
 
             widgetService.createWidget(widgetTemplate);
