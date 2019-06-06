@@ -24,7 +24,7 @@
   {
     "id" : 5,
     "type": "LINK",
-    "title": "The DOM",
-    "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+    "text": "Link Text",
+    "href": "Link URL"
   }
 ]

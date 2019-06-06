@@ -8,7 +8,8 @@ import ImageWidget from "./ImageWidget";
 
 const WidgetList = ({
                         preview, widgets, createWidget, selectWidget, headingSizeChanged, previewSelect, deleteWidget, positionUp, positionDown,
-                        paragraphTextChanged, headingTextChanged, listTextChanged, listTypeChanged, imageTextChanged
+                        paragraphTextChanged, headingTextChanged, listTextChanged, listTypeChanged, imageTextChanged,
+                        linkURLChanged, linkTextChanged
                     }) =>
 
     <div>
@@ -139,7 +140,13 @@ const WidgetList = ({
 
                             || (widget.type === "LINK" &&
                                 <LinkWidget
-                                    classNameForPreview={preview === "on" ? "" : "d-none"}/>)
+                                    classNameForPreview={preview === "on" ? "" : "d-none"}
+                                    linkURLChanged={linkURLChanged}
+                                    linkTextChanged={linkTextChanged}
+                                    widgetId={widget.id}
+                                    url={widget.href}
+                                    text={widget.text}
+                                />)
 
                             || (widget.type === "IMAGE" &&
                                 <ImageWidget

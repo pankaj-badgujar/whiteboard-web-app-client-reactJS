@@ -113,6 +113,10 @@ class WidgetService {
         widgets[this.findIndexOfWidget(widgetId)].listType = listType;
     }
 
+    updateURLForLink(widgetId,url){
+        widgets[this.findIndexOfWidget(widgetId)].href = url;
+    }
+
 }
 
 export default WidgetService

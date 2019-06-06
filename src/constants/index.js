@@ -10,3 +10,5 @@ export const HEADING_SIZE_CHANGED = 'heading_size_changed';
 export const LIST_TEXT_CHANGED = 'list_text_changed';
 export const LIST_TYPE_CHANGED = 'list_type_changed';
 export const IMAGE_TEXT_CHANGED = 'image_text_changed';
+export const LINK_TEXT_CHANGED = 'link_text_changed';
+export const LINK_URL_CHANGED = 'link_url_changed';

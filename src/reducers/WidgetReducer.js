@@ -1,6 +1,12 @@
 import {
     CREATE_WIDGET,
-    DELETE_WIDGET, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, IMAGE_TEXT_CHANGED, LIST_TEXT_CHANGED, LIST_TYPE_CHANGED,
+    DELETE_WIDGET,
+    HEADING_SIZE_CHANGED,
+    HEADING_TEXT_CHANGED,
+    IMAGE_TEXT_CHANGED,
+    LINK_TEXT_CHANGED, LINK_URL_CHANGED,
+    LIST_TEXT_CHANGED,
+    LIST_TYPE_CHANGED,
     PARAGRAPH_TEXT_CHANGED,
     POSITION_DOWN,
     POSITION_UP,
@@ -94,6 +100,18 @@ const widgetReducer = (state = initialState, action) => {
 
         case IMAGE_TEXT_CHANGED:
             widgetService.updateTextForWidgets(action.id, action.textChanged);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets: [...state.widgets], preview: state.preview};
+
+        case LINK_TEXT_CHANGED:
+            widgetService.updateTextForWidgets(action.id, action.textChanged);
+
+            state.widgets = widgetService.findAllWidgets();
+            return {widgets: [...state.widgets], preview: state.preview};
+
+        case LINK_URL_CHANGED:
+            widgetService.updateURLForLink(action.id, action.urlChanged);
 
             state.widgets = widgetService.findAllWidgets();
             return {widgets: [...state.widgets], preview: state.preview};
