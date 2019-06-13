@@ -31,8 +31,8 @@ const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged
                 <h5 className="row">Preview</h5>
                 {
                     listType === "ordered"
-                        ? <ol>{(textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ol>
-                        : <ul>{(textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ul>
+                        ? <ol>{ textEntered !== null && (textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ol>
+                        : <ul>{textEntered !== null && (textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ul>
                 }
             </div>
         </div>

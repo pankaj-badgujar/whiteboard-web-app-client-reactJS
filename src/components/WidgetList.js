@@ -134,7 +134,7 @@ class WidgetList extends React.Component{
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
                                             widgetId={widget.id}
                                             listTextChanged = {this.props.listTextChanged}
-                                            textEntered={widget.items}
+                                            textEntered={widget.text}
                                             listType={widget.listType}
                                             listTypeChanged={this.props.listTypeChanged}
                                         />)
