@@ -20,23 +20,22 @@ export default class CourseManager extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => this.findAllCourses();
+
+    findAllCourses = () =>
         this.courseService
             .findAllCourses()
             .then(courses => this.setState({
                 courses: courses
             }));
-    }
 
     selectCourse = course => {
         this.setState({selectedCourse: course})
     }
 
     addCourse = () => {
-        this.courseService.createCourse(this.state.course);
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+        this.courseService.createCourse(this.state.course)
+            .then(() => this.findAllCourses());
     };
 
     changeCourseTitle = (event) => {
@@ -44,18 +43,15 @@ export default class CourseManager extends React.Component {
             course: {
                 id: (new Date()).getTime(),
                 title: event.target.value,
-                modules: []
+                // modules: []
             }
         })
-    }
+    };
 
     deleteCourse = (courseId) => {
         this.courseService.deleteCourse(courseId)
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
-
-    }
+            .then(() => this.findAllCourses());
+    };
 
     render() {
         return (
