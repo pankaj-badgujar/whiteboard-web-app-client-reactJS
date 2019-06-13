@@ -1,6 +1,6 @@
 import {
     CREATE_WIDGET,
-    DELETE_WIDGET,
+    DELETE_WIDGET, FIND_ALL_WIDGETS,
     HEADING_SIZE_CHANGED,
     HEADING_TEXT_CHANGED,
     IMAGE_TEXT_CHANGED,
@@ -25,32 +25,32 @@ let initialState = {
     widgets: [],
     preview: "off"
 };
-// let idAutoIncrement = widgetsArray.length + 1;
-let idAutoIncrement = 3;
+
+
 
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
+        case CREATE_WIDGET:
+        // let widgetTemplate = {
+        //     id: idAutoIncrement++,
+        //     type: "HEADING",
+        //     size: 1,
+        //     text: "Heading text"
+        // };
+        //
+        // widgetService.createWidget(widgetTemplate);
+        // state.widgets = widgetService.findAllWidgets();
+        // return {widgets: [...state.widgets], preview: state.preview};
 
-        case 'FIND_ALL_WIDGETS':
+        case FIND_ALL_WIDGETS:
             return {
                 ...state,
-                widgets:action.widgets
+                widgets: action.widgets
             };
         case PREVIEW_SELECT:
             return state.preview == "off" ? {widgets: state.widgets, preview: "on"}
                 : {widgets: state.widgets, preview: "off"};
 
-        case CREATE_WIDGET:
-            let widgetTemplate = {
-                id: idAutoIncrement++,
-                type: "HEADING",
-                size: 1,
-                text: "Heading text"
-            };
-
-            widgetService.createWidget(widgetTemplate);
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
 
         case DELETE_WIDGET:
             widgetService.deleteWidget(action.id);

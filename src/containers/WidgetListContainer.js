@@ -16,9 +16,10 @@ import {imageTextChanged} from "../actions/imageTextChanged";
 import {linkTextChanged} from "../actions/linkTextChanged";
 import {linkURLChanged} from "../actions/linkURLChanged"
 import WidgetService from "../services/WidgetService";
+import {CREATE_WIDGET, FIND_ALL_WIDGETS} from "../constants";
 
 const service = WidgetService.getInstance();
-
+let idAutoIncrement;
 const stateToPropertyMapper = state => (
     {
         widgets: state.widgets,
@@ -29,7 +30,7 @@ const stateToPropertyMapper = state => (
 
 const dispatcherToPropertyMapper = dispatch => (
         {
-            createWidget: () => createWidget(dispatch),
+
             previewSelect: () => previewSelect(dispatch),
             deleteWidget: (id) => dispatch(deleteWidget(id)),
             positionUp: (widget) => dispatch(positionUp(widget)),
@@ -43,11 +44,24 @@ const dispatcherToPropertyMapper = dispatch => (
             imageTextChanged:(widgetId,textChanged) => dispatch(imageTextChanged(widgetId,textChanged)),
             linkURLChanged : (widgetId,urlChanged) => dispatch(linkURLChanged(widgetId,urlChanged)),
             linkTextChanged: (widgetId,textChanged) => dispatch(linkTextChanged(widgetId,textChanged)),
+
             findAllWidgets : () =>
             service
                 .findAllWidgets()
-                .then(widgets => dispatch({type:'FIND_ALL_WIDGETS', widgets :widgets}))
+                .then(widgets => {
+                    idAutoIncrement = widgets.length + 1;
+                    dispatch({type:FIND_ALL_WIDGETS, widgets :widgets})
+                }),
 
+            createWidget: () =>
+            service
+                .createWidget({
+                    id: idAutoIncrement++,
+                    type: "HEADING",
+                    size: 1,
+                    text: "Heading text"
+                })
+                .then(widgets => dispatch({type:CREATE_WIDGET, widgets :widgets}))
 
         }
     )
