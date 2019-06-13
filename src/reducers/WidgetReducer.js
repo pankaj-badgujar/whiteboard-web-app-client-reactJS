@@ -13,20 +13,29 @@ import {
     PREVIEW_SELECT,
     SELECT_WIDGET
 } from "../constants";
+import WidgetServiceForJSONFile from "../services/WidgetServiceForJSONFile";
 import WidgetService from "../services/WidgetService";
 
-let widgetService = WidgetService.getInstance();
-const widgetsArray = widgetService.findAllWidgets();
+
+const widgetService = WidgetService.getInstance();
+// let widgetService = WidgetServiceForJSONFile.getInstance();
+// let widgetsArray = widgetService.findAllWidgets();
 
 let initialState = {
-    widgets: widgetsArray,
+    widgets: [],
     preview: "off"
 };
-
-let idAutoIncrement = widgetsArray.length + 1;
+// let idAutoIncrement = widgetsArray.length + 1;
+let idAutoIncrement = 3;
 
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case 'FIND_ALL_WIDGETS':
+            return {
+                ...state,
+                widgets:action.widgets
+            };
         case PREVIEW_SELECT:
             return state.preview == "off" ? {widgets: state.widgets, preview: "on"}
                 : {widgets: state.widgets, preview: "off"};

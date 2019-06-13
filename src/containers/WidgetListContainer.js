@@ -15,6 +15,10 @@ import {listTypeChanged} from "../actions/listTypeChanged";
 import {imageTextChanged} from "../actions/imageTextChanged";
 import {linkTextChanged} from "../actions/linkTextChanged";
 import {linkURLChanged} from "../actions/linkURLChanged"
+import WidgetService from "../services/WidgetService";
+
+const service = WidgetService.getInstance();
+
 const stateToPropertyMapper = state => (
     {
         widgets: state.widgets,
@@ -38,7 +42,13 @@ const dispatcherToPropertyMapper = dispatch => (
             listTypeChanged:(widgetId,listType) => dispatch(listTypeChanged(widgetId,listType)),
             imageTextChanged:(widgetId,textChanged) => dispatch(imageTextChanged(widgetId,textChanged)),
             linkURLChanged : (widgetId,urlChanged) => dispatch(linkURLChanged(widgetId,urlChanged)),
-            linkTextChanged: (widgetId,textChanged) => dispatch(linkTextChanged(widgetId,textChanged))
+            linkTextChanged: (widgetId,textChanged) => dispatch(linkTextChanged(widgetId,textChanged)),
+            findAllWidgets : () =>
+            service
+                .findAllWidgets()
+                .then(widgets => dispatch({type:'FIND_ALL_WIDGETS', widgets :widgets}))
+
+
         }
     )
 ;
