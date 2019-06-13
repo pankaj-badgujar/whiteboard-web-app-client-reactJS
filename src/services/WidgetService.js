@@ -1,4 +1,3 @@
-
 class WidgetService {
 
     static myInstance = null;
@@ -16,14 +15,19 @@ class WidgetService {
             .then(response => response.json());
 
     createWidget = widget =>
-        fetch("http://localhost:8080/api/widgets" , {
+        fetch("http://localhost:8080/api/widgets", {
             method: 'POST',
             body: JSON.stringify(widget),
-            headers:{
-                'content-type' : 'application/json'
+            headers: {
+                'content-type': 'application/json'
             }
         })
             .then(response => response.json());
+
+    deleteWidget = widgetId =>
+        fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+            method: 'DELETE'
+        }).then(response => response.json());
 }
 
 export default WidgetService;

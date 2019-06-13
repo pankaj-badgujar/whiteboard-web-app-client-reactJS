@@ -27,7 +27,6 @@ let initialState = {
 };
 
 
-
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_WIDGET:
@@ -42,6 +41,11 @@ const widgetReducer = (state = initialState, action) => {
         // state.widgets = widgetService.findAllWidgets();
         // return {widgets: [...state.widgets], preview: state.preview};
 
+        case DELETE_WIDGET:
+        // widgetService.deleteWidget(action.id);
+        // state.widgets = widgetService.findAllWidgets();
+        // return {widgets: [...state.widgets], preview: state.preview};
+
         case FIND_ALL_WIDGETS:
             return {
                 ...state,
@@ -51,11 +55,6 @@ const widgetReducer = (state = initialState, action) => {
             return state.preview == "off" ? {widgets: state.widgets, preview: "on"}
                 : {widgets: state.widgets, preview: "off"};
 
-
-        case DELETE_WIDGET:
-            widgetService.deleteWidget(action.id);
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
 
         case POSITION_UP:
             widgetService.moveWidgetUp(action.widget);
