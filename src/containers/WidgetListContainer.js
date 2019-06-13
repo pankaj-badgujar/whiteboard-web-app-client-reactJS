@@ -42,8 +42,7 @@ const dispatcherToPropertyMapper = dispatch => (
             previewSelect: () => previewSelect(dispatch),
 
 
-            headingTextChanged: (widgetId, textChanged) => dispatch(headingTextChanged(widgetId, textChanged)),
-            headingSizeChanged: (widgetId, size) => dispatch(headingSizeChanged(widgetId, size)),
+
             listTextChanged: (widgetId, textChanged) => dispatch(listTextChanged(widgetId, textChanged)),
             listTypeChanged: (widgetId, listType) => dispatch(listTypeChanged(widgetId, listType)),
             imageTextChanged: (widgetId, textChanged) => dispatch(imageTextChanged(widgetId, textChanged)),
@@ -100,6 +99,17 @@ const dispatcherToPropertyMapper = dispatch => (
                     .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
             },
 
+            headingTextChanged: (widget, textChanged) => {
+                widget.text = textChanged;
+                service.updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            },
+
+            headingSizeChanged: (widget, size) => {
+                widget.size = size;
+                service.updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            },
         }
     )
 ;

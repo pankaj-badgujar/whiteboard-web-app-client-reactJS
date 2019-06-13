@@ -114,10 +114,8 @@ class WidgetList extends React.Component{
                                 {((widget.type === "HEADING" &&
                                         <HeadingWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
-                                            textEntered={widget.text}
+                                            widget={widget}
                                             headingTextChanged={this.props.headingTextChanged}
-                                            widgetId={widget.id}
-                                            textSize={widget.size}
                                             sizeSelect={this.props.headingSizeChanged}
                                         />)
 
