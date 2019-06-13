@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LinkWidget = ({classNameForPreview, linkURLChanged, linkTextChanged,widgetId,url,text}) =>
+const LinkWidget = ({classNameForPreview, urlChanged, textChanged,widget}) =>
     <div>
         <br/>
         <div id="LinkSection" className="p-4 border">
@@ -9,7 +9,7 @@ const LinkWidget = ({classNameForPreview, linkURLChanged, linkTextChanged,widget
                 <input
                     type="text"
                     className="form-control"
-                    onChange={(event) => linkURLChanged(widgetId,event.target.value)}
+                    onChange={(event) => urlChanged(widget,event.target.value)}
                     placeholder="Link URL"
                     id="linkURLFld"/>
             </div>
@@ -17,8 +17,8 @@ const LinkWidget = ({classNameForPreview, linkURLChanged, linkTextChanged,widget
                 <input
                     type="text"
                     className="form-control"
-                    onChange={(event) => linkTextChanged(widgetId,event.target.value)}
-                    placeholder="Link Text"
+                    onChange={(event) => textChanged(widget,event.target.value)}
+                    placeholder={widget.text}
                     id="linkTextFld"/>
             </div>
             <div className="form-group row">
@@ -27,7 +27,7 @@ const LinkWidget = ({classNameForPreview, linkURLChanged, linkTextChanged,widget
             </div>
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <a href={url}>{text}</a>
+                <a href={widget.url}>{widget.text}</a>
             </div>
         </div>
     </div>
