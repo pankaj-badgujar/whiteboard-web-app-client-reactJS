@@ -29,9 +29,7 @@ export default class CourseManager extends React.Component {
                 courses: courses
             }));
 
-    selectCourse = course => {
-        this.setState({selectedCourse: course})
-    }
+
 
     addCourse = () => {
         this.courseService.createCourse(this.state.course)
@@ -43,7 +41,7 @@ export default class CourseManager extends React.Component {
             course: {
                 id: (new Date()).getTime(),
                 title: event.target.value,
-                // modules: []
+                modules: []
             }
         })
     };

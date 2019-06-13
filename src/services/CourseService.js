@@ -28,6 +28,19 @@ class CourseService {
             method: 'DELETE'
         })
             .then(response => response.json());
+
+    findCourseById = courseId =>
+        fetch(`http://localhost:8080/api/courses/${courseId}`)
+            .then(response => response.json());
+
+    updateCourse = course =>
+        fetch(`http://localhost:8080/api/courses/${course.id}`,{
+            method:'PUT',
+            body: JSON.stringify(course),
+            headers:{
+                'content-type' : 'application/json'
+            }
+        }).then(response => response.json());
 }
 
 export default CourseService;
