@@ -1,8 +1,8 @@
 import React from 'react'
 import ModuleListItem from "./ModuleListItem";
-import CourseService from "../services/CourseService";
+import CourseServiceForJSONFile from "../services/CourseServiceForJSONFile";
 
-let courseService = CourseService.getInstance();
+let courseService = CourseServiceForJSONFile.getInstance();
 
 class ModuleList extends React.Component {
     constructor(props) {

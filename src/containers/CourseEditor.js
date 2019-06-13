@@ -2,7 +2,7 @@ import React from 'react'
 import ModuleList from "../components/ModuleList";
 import LessonTabs from "../components/LessonTabs";
 import TopicPills from "../components/TopicPills";
-import CourseService from '../services/CourseService.js'
+import CourseServiceForJSONFile from '../services/CourseServiceForJSONFile.js'
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import WidgetListContainer from "./WidgetListContainer";
 import Provider from "react-redux/es/components/Provider";
@@ -10,7 +10,7 @@ import {createStore} from "redux";
 import widgetReducer from '../reducers/WidgetReducer';
 
 
-let courseService = CourseService.getInstance();
+let courseService = CourseServiceForJSONFile.getInstance();
 
 
 const store = createStore(widgetReducer);

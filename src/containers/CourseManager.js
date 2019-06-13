@@ -1,35 +1,35 @@
 import React from 'react'
 import CourseTable from "./CourseTable";
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
-import CourseService from "../services/CourseService";
+import CourseServiceForJSONFile from "../services/CourseServiceForJSONFile";
 import CourseNavigationBar from "./CourseNavigationBar";
 import LessonTabs from "../components/LessonTabs";
-
+import CourseService from "../services/CourseService";
 
 export default class CourseManager extends React.Component {
     constructor(props) {
         super(props);
         this.changeCourseTitle = this.changeCourseTitle.bind(this);
+        // this.courseService = CourseServiceForJSONFile.getInstance();
         this.courseService = CourseService.getInstance();
-        const courses = this.courseService.findAllCourses();
 
         this.state = {
-            course: {
-                id: -1,
-                title: 'New Course',
-                modules: []
-            },
-            courses: courses,
+            courses: []
+        };
+    }
 
-            selectedCourse : courses[0]
-        }
-
+    componentDidMount() {
+        this.courseService
+            .findAllCourses()
+            .then(courses => this.setState({
+                courses: courses
+            }));
     }
 
     selectCourse = course => {
-            this.setState({selectedCourse : course})
+        this.setState({selectedCourse: course})
     }
 
     addCourse = () => {
@@ -73,7 +73,7 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseGrid
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse = {this.selectCourse}
+                            selectCourse={this.selectCourse}
                         />}
                     />
                     <Route
@@ -81,7 +81,7 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseTable
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse = {this.selectCourse}
+                            selectCourse={this.selectCourse}
                         />}
                     />
 

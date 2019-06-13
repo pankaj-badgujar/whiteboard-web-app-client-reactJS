@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseCard from "../components/CourseCard";
-import CourseService from '../services/CourseService.js'
+import CourseServiceForJSONFile from '../services/CourseServiceForJSONFile.js'
 import {Link} from "react-router-dom";
 
 
