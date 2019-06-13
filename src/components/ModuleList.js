@@ -23,21 +23,21 @@ class ModuleList extends React.Component {
                 title: event.target.value
             }
         })
-    }
+    };
 
     createModule = () => {
         courseService.createModule(this.props.courseId,this.state.module)
         this.setState({
             modules : courseService.findCourseById(this.props.courseId).modules
         });
-    }
+    };
 
     deleteModule = (moduleId) => {
         courseService.deleteModule(this.props.courseId, moduleId)
         this.setState({
             modules : courseService.findCourseById(this.props.courseId).modules
         })
-    }
+    };
 
     render() {
 
@@ -53,7 +53,7 @@ class ModuleList extends React.Component {
                 </button>
                 <br/>
                 <ul className="list-group">
-                    {this.state.modules.map(module => <ModuleListItem
+                    { this.props.modules !== undefined && this.state.modules.map(module => <ModuleListItem
                         selectedModule={this.props.selectedModule}
                         selectModule={this.props.selectModule}
                         courseId={this.props.courseId}

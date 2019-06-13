@@ -79,33 +79,37 @@ class CourseEditor extends React.Component {
             <Router>
                 <div>
                     <h2>{this.state.course.title}</h2>
-                    {/*<div className="row">
+                    <div className="row">
                         <div className="col-4">
-                            {this.state.course.modules.length !==0 && <ModuleList
+                            <ModuleList
                                 selectedModule={this.state.selectedModule}
                                 selectModule={this.selectModule}
                                 courseId={this.state.courseId}
-                                modules={this.state.course.modules}/>}
+                                modules={this.state.course.modules}/>
                         </div>
 
                         <div className="col-8">
-                            {this.state.selectedModule.lessons.length !==0 && <LessonTabs
+                            {this.state.selectedModule !== undefined && <LessonTabs
                                 lessons={this.state.selectedModule.lessons}
                                 selectedLesson={this.state.selectedLesson}
                                 selectLesson={this.selectLesson}
                                 addLesson={this.addLesson}
                             />}
+                            {this.state.selectedModule !== undefined
+                            && this.state.selectedLesson !== undefined
+                            &&
                             <TopicPills
                                 topics={this.state.selectedLesson.topics}
                                 selectedTopic={this.state.selectedTopic}
                                 selectTopic={this.selectTopic}
-                            />
+                            />}
+
                             <br/>
                             <Provider store={store}>
                                 <WidgetListContainer />
                             </Provider>
                         </div>
-                    </div>*/}
+                    </div>
                 </div>
             </Router>
         );
