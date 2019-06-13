@@ -42,11 +42,25 @@ class WidgetService {
         let widgetToBeChanged = this.findWidgetById(widgetId);
         widgetToBeChanged.type = widgetType;
         return this.updateWidget(widgetId,widgetToBeChanged)
-    }
+    };
 
     findWidgetById = widgetId =>
         fetch(`http://localhost:8080/api/widgets/${widgetId}`)
             .then(response => response.json());
+
+    moveWidgetUpInList = widgetId =>
+        fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=UP`,{
+            method: 'POST'
+        })
+            .then(response => response.json());
+
+
+    moveWidgetDownInList = widgetId =>
+        fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=DOWN`,{
+            method: 'POST'
+        })
+            .then(response => response.json());
+    
 }
 
 export default WidgetService;

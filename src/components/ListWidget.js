@@ -36,6 +36,6 @@ const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged
                 }
             </div>
         </div>
-    </div>
+    </div>;
 
 export default ListWidget

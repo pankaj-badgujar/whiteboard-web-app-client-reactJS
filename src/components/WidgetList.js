@@ -45,7 +45,7 @@ class WidgetList extends React.Component{
                                             {widget !== this.props.widgets[0] && <div className="col-1">
                                                 <button
                                                     type="button"
-                                                    onClick={() => this.props.positionUp(widget)}
+                                                    onClick={() => this.props.positionUp(widget.id)}
                                                     className="btn btn-warning">
                                                     <i className="fa fa-arrow-circle-up"></i>
                                                 </button>
@@ -54,7 +54,7 @@ class WidgetList extends React.Component{
                                             {widget !== this.props.widgets[this.props.widgets.length - 1] && <div className="col-1">
                                                 <button
                                                     type="button"
-                                                    onClick={() => this.props.positionDown(widget)}
+                                                    onClick={() => this.props.positionDown(widget.id)}
                                                     className="btn btn-warning">
                                                     <i className="fa fa-arrow-circle-down"></i>
                                                 </button>

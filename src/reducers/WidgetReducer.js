@@ -52,28 +52,27 @@ const widgetReducer = (state = initialState, action) => {
         // state.widgets = widgetService.findAllWidgets();
         // return {widgets: [...state.widgets], preview: state.preview};
 
+        case POSITION_UP:
+        // widgetService.moveWidgetUp(action.widget);
+        //
+        // state.widgets = widgetService.findAllWidgets();
+        // return {widgets: [...state.widgets], preview: state.preview};
+
+        case POSITION_DOWN:
+        // widgetService.moveWidgetDown(action.widget);
+        //
+        // state.widgets = widgetService.findAllWidgets();
+        // return {widgets: [...state.widgets], preview: state.preview};
+
         case FIND_ALL_WIDGETS:
             return {
                 ...state,
                 widgets: action.widgets
             };
+
         case PREVIEW_SELECT:
             return state.preview == "off" ? {widgets: state.widgets, preview: "on"}
                 : {widgets: state.widgets, preview: "off"};
-
-
-        case POSITION_UP:
-            widgetService.moveWidgetUp(action.widget);
-
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
-
-        case POSITION_DOWN:
-            widgetService.moveWidgetDown(action.widget);
-
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
-
 
 
         case PARAGRAPH_TEXT_CHANGED:
