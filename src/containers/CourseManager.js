@@ -1,42 +1,39 @@
 import React from 'react'
 import CourseTable from "./CourseTable";
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import CourseGrid from "./CourseGrid";
 import CourseEditor from "./CourseEditor.js"
-import CourseService from "../services/CourseService";
+import CourseServiceForJSONFile from "../services/CourseServiceForJSONFile";
 import CourseNavigationBar from "./CourseNavigationBar";
 import LessonTabs from "../components/LessonTabs";
-
+import CourseService from "../services/CourseService";
 
 export default class CourseManager extends React.Component {
     constructor(props) {
         super(props);
         this.changeCourseTitle = this.changeCourseTitle.bind(this);
+        // this.courseService = CourseServiceForJSONFile.getInstance();
         this.courseService = CourseService.getInstance();
-        const courses = this.courseService.findAllCourses();
 
         this.state = {
-            course: {
-                id: -1,
-                title: 'New Course',
-                modules: []
-            },
-            courses: courses,
-
-            selectedCourse : courses[0]
-        }
-
+            courses: []
+        };
     }
 
-    selectCourse = course => {
-            this.setState({selectedCourse : course})
-    }
+    componentDidMount = () => this.findAllCourses();
+
+    findAllCourses = () =>
+        this.courseService
+            .findAllCourses()
+            .then(courses => this.setState({
+                courses: courses
+            }));
+
+
 
     addCourse = () => {
-        this.courseService.createCourse(this.state.course);
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+        this.courseService.createCourse(this.state.course)
+            .then(() => this.findAllCourses());
     };
 
     changeCourseTitle = (event) => {
@@ -47,15 +44,21 @@ export default class CourseManager extends React.Component {
                 modules: []
             }
         })
-    }
+    };
 
     deleteCourse = (courseId) => {
         this.courseService.deleteCourse(courseId)
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+            .then(() => this.findAllCourses());
+    };
 
-    }
+    updateCourse = (courseId,newTitle) =>{
+        const newCourse = {
+            "id" : courseId,
+            "title" : newTitle
+        };
+        this.courseService.updateCourse(newCourse).then(() => this.findAllCourses());
+
+    } ;
 
     render() {
         return (
@@ -73,7 +76,7 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseGrid
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse = {this.selectCourse}
+                            updateCourse={this.updateCourse}
                         />}
                     />
                     <Route
@@ -81,7 +84,7 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseTable
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse = {this.selectCourse}
+                            updateCourse={this.updateCourse}
                         />}
                     />
 

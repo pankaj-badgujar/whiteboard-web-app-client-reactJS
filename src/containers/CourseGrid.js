@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseCard from "../components/CourseCard";
-import CourseService from '../services/CourseService.js'
+import CourseServiceForJSONFile from '../services/CourseServiceForJSONFile.js'
 import {Link} from "react-router-dom";
 
 
@@ -41,6 +41,7 @@ class CourseGrid extends React.Component {
                     <div className="card-deck container-fluid">
                         {this.props.courses.map(course => <CourseCard course={course} key={course.id}
                                                                       selectCourse = {this.props.selectCourse}
+                                                                      updateCourse = {this.props.updateCourse}
                                                                       deleteCourse={this.props.deleteCourse}/>)}
                     </div>
 
