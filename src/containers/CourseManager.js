@@ -76,7 +76,6 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseGrid
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse={this.selectCourse}
                             updateCourse={this.updateCourse}
                         />}
                     />
@@ -85,7 +84,6 @@ export default class CourseManager extends React.Component {
                         render={() => <CourseTable
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
-                            selectCourse={this.selectCourse}
                             updateCourse={this.updateCourse}
                         />}
                     />
