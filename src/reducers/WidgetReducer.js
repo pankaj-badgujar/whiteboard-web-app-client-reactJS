@@ -46,6 +46,12 @@ const widgetReducer = (state = initialState, action) => {
         // state.widgets = widgetService.findAllWidgets();
         // return {widgets: [...state.widgets], preview: state.preview};
 
+        case SELECT_WIDGET:
+        // widgetService.selectWidget(action.id, action.widgetType);
+        //
+        // state.widgets = widgetService.findAllWidgets();
+        // return {widgets: [...state.widgets], preview: state.preview};
+
         case FIND_ALL_WIDGETS:
             return {
                 ...state,
@@ -68,11 +74,7 @@ const widgetReducer = (state = initialState, action) => {
             state.widgets = widgetService.findAllWidgets();
             return {widgets: [...state.widgets], preview: state.preview};
 
-        case SELECT_WIDGET:
-            widgetService.selectWidget(action.id, action.widgetType);
 
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
 
         case PARAGRAPH_TEXT_CHANGED:
             widgetService.updateTextForWidgets(action.id, action.textChanged);

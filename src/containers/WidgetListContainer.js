@@ -16,7 +16,7 @@ import {imageTextChanged} from "../actions/imageTextChanged";
 import {linkTextChanged} from "../actions/linkTextChanged";
 import {linkURLChanged} from "../actions/linkURLChanged"
 import WidgetService from "../services/WidgetService";
-import {CREATE_WIDGET, DELETE_WIDGET, FIND_ALL_WIDGETS} from "../constants";
+import {CREATE_WIDGET, DELETE_WIDGET, FIND_ALL_WIDGETS, SELECT_WIDGET} from "../constants";
 
 const service = WidgetService.getInstance();
 let idAutoIncrement;
@@ -35,7 +35,7 @@ const dispatcherToPropertyMapper = dispatch => (
 
             positionUp: (widget) => dispatch(positionUp(widget)),
             positionDown: (widget) => dispatch(positionDown(widget)),
-            selectWidget: (widgetId, widgetType) => dispatch(selectWidget(widgetId, widgetType)),
+
             paragraphTextChanged: (widgetId, textChanged) => dispatch(paragraphTextChanged(widgetId, textChanged)),
             headingTextChanged: (widgetId, textChanged) => dispatch(headingTextChanged(widgetId, textChanged)),
             headingSizeChanged: (widgetId, size) => dispatch(headingSizeChanged(widgetId, size)),
@@ -67,6 +67,11 @@ const dispatcherToPropertyMapper = dispatch => (
                 service
                     .deleteWidget(widgetId)
                     .then(widgets => dispatch({type: DELETE_WIDGET, widgets: widgets})),
+
+            selectWidget: (widgetId, widgetType) =>
+                service
+                    .selectWidget(widgetId,widgetType)
+                    .then(widgets => dispatch({type: SELECT_WIDGET, widgets: widgets})),
 
         }
     )
