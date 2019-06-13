@@ -51,6 +51,15 @@ export default class CourseManager extends React.Component {
             .then(() => this.findAllCourses());
     };
 
+    updateCourse = (courseId,newTitle) =>{
+        const newCourse = {
+            "id" : courseId,
+            "title" : newTitle
+        };
+        this.courseService.updateCourse(newCourse).then(() => this.findAllCourses());
+
+    } ;
+
     render() {
         return (
             <Router>
@@ -68,6 +77,7 @@ export default class CourseManager extends React.Component {
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
                             selectCourse={this.selectCourse}
+                            updateCourse={this.updateCourse}
                         />}
                     />
                     <Route
@@ -76,6 +86,7 @@ export default class CourseManager extends React.Component {
                             courses={this.state.courses}
                             deleteCourse={this.deleteCourse}
                             selectCourse={this.selectCourse}
+                            updateCourse={this.updateCourse}
                         />}
                     />
 

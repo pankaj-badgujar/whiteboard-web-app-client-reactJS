@@ -1,28 +1,75 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const CourseRow = ({course, deleteCourse, selectCourse}) =>
+class CourseRow extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.toggleEditing = this.toggleEditing.bind(this);
+        this.updateNewCourseName = this.updateNewCourseName.bind(this);
+    }
 
-    <tr>
+    state = {
+        editing: false
+    };
 
-        <td scope="row"><Link to={`/course-editor/${course.id}`} onClick={() => selectCourse(course)}><i className="fa fa-book"></i> {course.title}</Link>
-            </td>
-            <td>
-                <div className="d-none d-sm-block"><Link to={`/course-editor/${course.id}`} onClick={() => selectCourse(course)}>me</Link></div>
-            </td>
-            <td>
-                <div className="d-none d-sm-block"><Link to={`/course-editor/${course.id}`} onClick={() => selectCourse(course)}>Yesterday</Link></div>
-            </td>
+    toggleEditing(event) {
+        this.setState({
+            editing: !this.state.editing
+        });
+        if (this.state.editing === true) {
+            // alert(this.state.newCourseName);
+            this.props.updateCourse(this.props.course.id, this.state.newCourseName);
+        }
+    }
 
-            <td>
-                <i className="fa fa-trash btn btn-danger" onClick={() => deleteCourse(course.id)}></i>
-            </td>
-            <td>
-                <Link to={`/course-editor/${course.id}`} onClick={() => selectCourse(course)}><i className="fa fa-pencil btn btn-warning"></i></Link>
-            </td>
+    updateNewCourseName(event){
+        this.setState({
+            newCourseName: event.target.value
+        })
+    }
 
-    </tr>
+    render() {
+        return (
+            <tr>
 
+                <td scope="row">
+                    {!this.state.editing && <Link to={`/course-editor/${this.props.course.id}`}
+                                                  onClick={() => this.props.selectCourse(this.props.course)}><i
+                        className="fa fa-book"></i> {this.props.course.title}</Link>}
+                    {this.state.editing && <input
+                        onChange={this.updateNewCourseName}
+                        className={"form-control"}
+                        placeholder={"Enter new name for course"}
+                    />}
+                </td>
+                <td>
+                    <div className="d-none d-sm-block"><Link to={`/course-editor/${this.props.course.id}`}
+                                                             onClick={() => this.props.selectCourse(this.props.course)}>me</Link>
+                    </div>
+                </td>
+                <td>
+                    <div className="d-none d-sm-block"><Link to={`/course-editor/${this.props.course.id}`}
+                                                             onClick={() => this.props.selectCourse(this.props.course)}>Yesterday</Link>
+                    </div>
+                </td>
+
+                <td>
+                    <i className="fa fa-trash btn btn-danger"
+                       onClick={() => this.props.deleteCourse(this.props.course.id)}></i>
+                </td>
+                <td>
+                    {!this.state.editing &&
+                    <i onClick={this.toggleEditing} className="fa fa-pencil btn btn-warning"></i>
+                    }
+                    {this.state.editing &&
+                    <i onClick={this.toggleEditing} className="fa fa-check-circle btn btn-success"></i>
+                    }
+                </td>
+            </tr>
+        )
+    }
+
+}
 
 export default CourseRow
