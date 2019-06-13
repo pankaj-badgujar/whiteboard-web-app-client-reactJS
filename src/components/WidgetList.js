@@ -6,13 +6,14 @@ import ListWidget from "./ListWidget";
 import LinkWidget from "./LinkWidget";
 import ImageWidget from "./ImageWidget";
 
-class WidgetList extends React.Component{
-    constructor(props){
+class WidgetList extends React.Component {
+    constructor(props) {
         super(props);
         this.props.findAllWidgets();
     }
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
                 <div className={"row"}>
                     <label className={"col-10"}></label>
@@ -51,7 +52,8 @@ class WidgetList extends React.Component{
                                                 </button>
                                             </div>}
                                             <label className="col-1"></label>
-                                            {widget !== this.props.widgets[this.props.widgets.length - 1] && <div className="col-1">
+                                            {widget !== this.props.widgets[this.props.widgets.length - 1] &&
+                                            <div className="col-1">
                                                 <button
                                                     type="button"
                                                     onClick={() => this.props.positionDown(widget.id)}
@@ -115,7 +117,7 @@ class WidgetList extends React.Component{
                                         <HeadingWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
                                             widget={widget}
-                                            headingTextChanged={this.props.headingTextChanged}
+                                            textChanged={this.props.textChanged}
                                             sizeSelect={this.props.headingSizeChanged}
                                         />)
 
@@ -123,35 +125,30 @@ class WidgetList extends React.Component{
                                         <ParagraphWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
                                             widget={widget}
-                                            paragraphTextChanged={this.props.paragraphTextChanged}
+                                            textChanged={this.props.textChanged}
                                         />)
 
                                     || (widget.type === "LIST" &&
                                         <ListWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
-                                            widgetId={widget.id}
-                                            listTextChanged = {this.props.listTextChanged}
-                                            textEntered={widget.text}
-                                            listType={widget.listType}
+                                            textChanged={this.props.textChanged}
+                                            widget={widget}
                                             listTypeChanged={this.props.listTypeChanged}
                                         />)
 
                                     || (widget.type === "LINK" &&
                                         <LinkWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
-                                            linkURLChanged={this.props.linkURLChanged}
-                                            linkTextChanged={this.props.linkTextChanged}
-                                            widgetId={widget.id}
-                                            url={widget.href}
-                                            text={widget.text}
+                                            urlChanged={this.props.urlChanged}
+                                            textChanged={this.props.textChanged}
+                                            widget={widget}
                                         />)
 
                                     || (widget.type === "IMAGE" &&
                                         <ImageWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
-                                            widgetId={widget.id}
-                                            imageURL={widget.text}
-                                            imageTextChanged={this.props.imageTextChanged}
+                                            widget={widget}
+                                            urlChanged={this.props.urlChanged}
                                         />)
                                 )}
                             </div>

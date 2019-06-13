@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeadingWidget = ({classNameForPreview, headingTextChanged, widget, sizeSelect}) =>
+const HeadingWidget = ({classNameForPreview, textChanged, widget, sizeSelect}) =>
     <div>
         <br/>
         <div id="headingSection" className="p-4 border">
@@ -10,7 +10,7 @@ const HeadingWidget = ({classNameForPreview, headingTextChanged, widget, sizeSel
                     type="text"
                     className="form-control"
                     placeholder={widget.text}
-                    onChange={(event) => headingTextChanged(widget,event.target.value)}
+                    onChange={(event) => textChanged(widget,event.target.value)}
                     id="heading2TextFld"/>
             </div>
             <div className="form-group row">

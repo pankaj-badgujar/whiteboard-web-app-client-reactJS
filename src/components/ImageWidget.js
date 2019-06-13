@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ImageWidget = ({classNameForPreview, imageTextChanged, imageURL, widgetId}) =>
+const ImageWidget = ({classNameForPreview, urlChanged, widget}) =>
     <div>
         <br/>
         <div id="ImageSection" className="p-4 border">
@@ -10,7 +10,7 @@ const ImageWidget = ({classNameForPreview, imageTextChanged, imageURL, widgetId}
                     type="text"
                     className="form-control"
                     placeholder="Image URL"
-                    onChange={(event) => imageTextChanged(widgetId, event.target.value)}
+                    onChange={(event) => urlChanged(widget, event.target.value)}
                     id="headingTextFld"/>
             </div>
 
@@ -24,7 +24,7 @@ const ImageWidget = ({classNameForPreview, imageTextChanged, imageURL, widgetId}
             </div>
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <img src={imageURL}/>
+                <img src={widget.url} class="img-fluid" alt="Responsive image"/>
             </div>
         </div>
     </div>

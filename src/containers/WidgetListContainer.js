@@ -41,14 +41,6 @@ const dispatcherToPropertyMapper = dispatch => (
 
             previewSelect: () => previewSelect(dispatch),
 
-
-
-            listTextChanged: (widgetId, textChanged) => dispatch(listTextChanged(widgetId, textChanged)),
-            listTypeChanged: (widgetId, listType) => dispatch(listTypeChanged(widgetId, listType)),
-            imageTextChanged: (widgetId, textChanged) => dispatch(imageTextChanged(widgetId, textChanged)),
-            linkURLChanged: (widgetId, urlChanged) => dispatch(linkURLChanged(widgetId, urlChanged)),
-            linkTextChanged: (widgetId, textChanged) => dispatch(linkTextChanged(widgetId, textChanged)),
-
             findAllWidgets: () =>
                 service
                     .findAllWidgets()
@@ -72,16 +64,12 @@ const dispatcherToPropertyMapper = dispatch => (
                     .deleteWidget(widgetId)
                     .then(widgets => dispatch({type: DELETE_WIDGET, widgets: widgets})),
 
-            selectWidget: (widget, widgetType) =>{
-                widget.type=widgetType;
+            selectWidget: (widget, widgetType) => {
+                widget.type = widgetType;
                 service
                     .updateWidget(widget)
                     .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
             },
-
-                // service
-                //     .selectWidget(widgetId, widgetType)
-                //     .then(widgets => dispatch({type: SELECT_WIDGET, widgets: widgets})),
 
             positionUp: widgetId =>
                 service
@@ -93,13 +81,7 @@ const dispatcherToPropertyMapper = dispatch => (
                     .moveWidgetDownInList(widgetId)
                     .then(widgets => dispatch({type: POSITION_DOWN, widgets: widgets})),
 
-            paragraphTextChanged: (widget, textChanged) => {
-                widget.text = textChanged;
-                service.updateWidget(widget)
-                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
-            },
-
-            headingTextChanged: (widget, textChanged) => {
+            textChanged: (widget, textChanged) => {
                 widget.text = textChanged;
                 service.updateWidget(widget)
                     .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
@@ -110,6 +92,19 @@ const dispatcherToPropertyMapper = dispatch => (
                 service.updateWidget(widget)
                     .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
             },
+
+            urlChanged: (widget, url) => {
+                widget.url = url;
+                service.updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            },
+
+            listTypeChanged: (widget, listType) => {
+                widget.listType = listType;
+                service.updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            }
+
         }
     )
 ;

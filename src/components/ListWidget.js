@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged, listType, listTypeChanged}) =>
+const ListWidget = ({classNameForPreview, widget, textChanged, listTypeChanged}) =>
     <div>
         <br/>
 
@@ -10,12 +10,12 @@ const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged
             <div className="form-group row">
 						<textarea
                             rows="3"
-                            onChange={(event) => listTextChanged(widgetId, event.target.value)}
-                            className="form-control">{textEntered}</textarea>
+                            onChange={(event) => textChanged(widget, event.target.value)}
+                            className="form-control">{widget.text}</textarea>
             </div>
             <div className="form-group row">
                 <select
-                    onChange={(event) => listTypeChanged(widgetId,event.target.value)}
+                    onChange={(event) => listTypeChanged(widget,event.target.value)}
                     className="custom-select">
                     <option value="unordered">Unordered List</option>
                     <option value="ordered">Ordered List</option>
@@ -30,9 +30,10 @@ const ListWidget = ({classNameForPreview, textEntered, widgetId, listTextChanged
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
                 {
-                    listType === "ordered"
-                        ? <ol>{ textEntered !== null && (textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ol>
-                        : <ul>{textEntered !== null && (textEntered.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ul>
+
+                    widget.listType === "ordered"
+                        ? <ol>{ widget.text !== null && (widget.text.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ol>
+                        : <ul>{ widget.text !== null && (widget.text.split('\n')).map((item,key) => <li key={key}>{item}</li>)}</ul>
                 }
             </div>
         </div>
