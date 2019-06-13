@@ -9,7 +9,7 @@ const HeadingWidget = ({classNameForPreview, headingTextChanged, sizeSelect, tex
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Heading Text"
+                    placeholder={textEntered}
                     onChange={(event) => headingTextChanged(widgetId,event.target.value)}
                     id="heading2TextFld"/>
             </div>

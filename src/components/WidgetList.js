@@ -63,7 +63,7 @@ class WidgetList extends React.Component{
                                             <div className="col-6">
                                                 <select
                                                     id={"selectWidgetToUpdate"}
-                                                    onChange={(event) => this.props.selectWidget(widget.id, event.target.value)}
+                                                    onChange={(event) => this.props.selectWidget(widget, event.target.value)}
                                                     className="custom-select"
                                                     role="widgetType">
                                                     {
@@ -124,9 +124,8 @@ class WidgetList extends React.Component{
                                     || (widget.type === "PARAGRAPH" &&
                                         <ParagraphWidget
                                             classNameForPreview={this.props.preview === "on" ? "" : "d-none"}
-                                            widgetId={widget.id}
+                                            widget={widget}
                                             paragraphTextChanged={this.props.paragraphTextChanged}
-                                            textEntered={widget.text}
                                         />)
 
                                     || (widget.type === "LIST" &&

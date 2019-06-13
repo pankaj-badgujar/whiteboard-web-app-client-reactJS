@@ -11,7 +11,7 @@ import {
     POSITION_DOWN,
     POSITION_UP,
     PREVIEW_SELECT,
-    SELECT_WIDGET
+    SELECT_WIDGET, UPDATE_WIDGET
 } from "../constants";
 import WidgetServiceForJSONFile from "../services/WidgetServiceForJSONFile";
 import WidgetService from "../services/WidgetService";
@@ -46,11 +46,6 @@ const widgetReducer = (state = initialState, action) => {
         // state.widgets = widgetService.findAllWidgets();
         // return {widgets: [...state.widgets], preview: state.preview};
 
-        case SELECT_WIDGET:
-        // widgetService.selectWidget(action.id, action.widgetType);
-        //
-        // state.widgets = widgetService.findAllWidgets();
-        // return {widgets: [...state.widgets], preview: state.preview};
 
         case POSITION_UP:
         // widgetService.moveWidgetUp(action.widget);
@@ -64,6 +59,8 @@ const widgetReducer = (state = initialState, action) => {
         // state.widgets = widgetService.findAllWidgets();
         // return {widgets: [...state.widgets], preview: state.preview};
 
+        case UPDATE_WIDGET:
+
         case FIND_ALL_WIDGETS:
             return {
                 ...state,
@@ -74,11 +71,16 @@ const widgetReducer = (state = initialState, action) => {
             return state.preview == "off" ? {widgets: state.widgets, preview: "on"}
                 : {widgets: state.widgets, preview: "off"};
 
+        // case SELECT_WIDGET:
+        //     widgetService.selectWidget(action.id, action.widgetType);
+        //
+        //     state.widgets = widgetService.findAllWidgets();
+        //     return {widgets: [...state.widgets], preview: state.preview};
 
-        case PARAGRAPH_TEXT_CHANGED:
-            widgetService.updateTextForWidgets(action.id, action.textChanged);
-            state.widgets = widgetService.findAllWidgets();
-            return {widgets: [...state.widgets], preview: state.preview};
+        // case PARAGRAPH_TEXT_CHANGED:
+        //     widgetService.updateTextForWidgets(action.id, action.textChanged);
+        //     state.widgets = widgetService.findAllWidgets();
+        //     return {widgets: [...state.widgets], preview: state.preview};
 
         case HEADING_TEXT_CHANGED:
 

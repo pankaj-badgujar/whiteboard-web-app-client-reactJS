@@ -29,8 +29,8 @@ class WidgetService {
             method: 'DELETE'
         }).then(response => response.json());
 
-    updateWidget = (widgetId, widget) =>
-        fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    updateWidget = (widget) =>
+        fetch(`http://localhost:8080/api/widgets/${widget.id}`, {
             method: 'PUT',
             body: JSON.stringify(widget),
             headers: {
@@ -41,7 +41,7 @@ class WidgetService {
     selectWidget = (widgetId,widgetType) => {
         let widgetToBeChanged = this.findWidgetById(widgetId);
         widgetToBeChanged.type = widgetType;
-        return this.updateWidget(widgetId,widgetToBeChanged)
+        return this.updateWidget(widgetToBeChanged)
     };
 
     findWidgetById = widgetId =>

@@ -18,7 +18,7 @@ const LinkWidget = ({classNameForPreview, linkURLChanged, linkTextChanged,widget
                     type="text"
                     className="form-control"
                     onChange={(event) => linkTextChanged(widgetId,event.target.value)}
-                    placeholder="Link Text"
+                    placeholder={text}
                     id="linkTextFld"/>
             </div>
             <div className="form-group row">

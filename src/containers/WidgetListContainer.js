@@ -16,7 +16,15 @@ import {imageTextChanged} from "../actions/imageTextChanged";
 import {linkTextChanged} from "../actions/linkTextChanged";
 import {linkURLChanged} from "../actions/linkURLChanged"
 import WidgetService from "../services/WidgetService";
-import {CREATE_WIDGET, DELETE_WIDGET, FIND_ALL_WIDGETS, POSITION_DOWN, POSITION_UP, SELECT_WIDGET} from "../constants";
+import {
+    CREATE_WIDGET,
+    DELETE_WIDGET,
+    FIND_ALL_WIDGETS,
+    PARAGRAPH_TEXT_CHANGED,
+    POSITION_DOWN,
+    POSITION_UP,
+    SELECT_WIDGET, UPDATE_WIDGET
+} from "../constants";
 
 const service = WidgetService.getInstance();
 let idAutoIncrement;
@@ -34,7 +42,6 @@ const dispatcherToPropertyMapper = dispatch => (
             previewSelect: () => previewSelect(dispatch),
 
 
-            paragraphTextChanged: (widgetId, textChanged) => dispatch(paragraphTextChanged(widgetId, textChanged)),
             headingTextChanged: (widgetId, textChanged) => dispatch(headingTextChanged(widgetId, textChanged)),
             headingSizeChanged: (widgetId, size) => dispatch(headingSizeChanged(widgetId, size)),
             listTextChanged: (widgetId, textChanged) => dispatch(listTextChanged(widgetId, textChanged)),
@@ -66,10 +73,16 @@ const dispatcherToPropertyMapper = dispatch => (
                     .deleteWidget(widgetId)
                     .then(widgets => dispatch({type: DELETE_WIDGET, widgets: widgets})),
 
-            selectWidget: (widgetId, widgetType) =>
+            selectWidget: (widget, widgetType) =>{
+                widget.type=widgetType;
                 service
-                    .selectWidget(widgetId, widgetType)
-                    .then(widgets => dispatch({type: SELECT_WIDGET, widgets: widgets})),
+                    .updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            },
+
+                // service
+                //     .selectWidget(widgetId, widgetType)
+                //     .then(widgets => dispatch({type: SELECT_WIDGET, widgets: widgets})),
 
             positionUp: widgetId =>
                 service
@@ -81,6 +94,11 @@ const dispatcherToPropertyMapper = dispatch => (
                     .moveWidgetDownInList(widgetId)
                     .then(widgets => dispatch({type: POSITION_DOWN, widgets: widgets})),
 
+            paragraphTextChanged: (widget, textChanged) => {
+                widget.text = textChanged;
+                service.updateWidget(widget)
+                    .then(widgets => dispatch({type: UPDATE_WIDGET, widgets: widgets}))
+            },
 
         }
     )
