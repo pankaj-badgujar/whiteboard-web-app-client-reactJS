@@ -17,7 +17,8 @@ class CourseCard extends React.Component {
         this.setState({
             editing: !this.state.editing
         });
-        if (this.state.editing === true) {
+        if (this.state.editing === true && this.state.newCourseName !== undefined
+            && this.state.newCourseName.replace(/^\s*/, "").length !==0) {
             this.props.updateCourse(this.props.course.id, this.state.newCourseName);
         }
     }
