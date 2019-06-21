@@ -45,6 +45,15 @@ class ModuleList extends React.Component {
             }));
     };
 
+    updateModule = (moduleId, newModuleName) => {
+        const newModule = {
+            "title" : newModuleName
+        };
+        moduleService.updateModule(moduleId,newModule)
+            .then(modules => this.setState({
+                modules: modules
+            }));
+    };
 
     render() {
 
@@ -60,13 +69,15 @@ class ModuleList extends React.Component {
                 </button>
                 <br/>
                 <ul className="list-group">
-                    {this.state.modules !== undefined && this.state.modules.map(module => <ModuleListItem
+                    {this.state.modules !== undefined &&
+                    this.state.modules.map(module => <ModuleListItem
                         selectedModule={this.props.selectedModule}
                         selectModule={this.props.selectModule}
                         courseId={this.props.courseId}
                         module={module}
                         key={module.id}
                         deleteModule={this.deleteModule}
+                        updateModule={this.updateModule}
                     />)}
                 </ul>
 

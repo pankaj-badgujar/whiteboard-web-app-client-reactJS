@@ -33,6 +33,14 @@ class ModuleService {
                 method: 'DELETE'
             }).then(response => response.json());
 
+    updateModule = (moduleId, module) =>
+        fetch(`http://localhost:8080/api/modules/${moduleId}`,{
+            method: 'PUT',
+            body: JSON.stringify(module),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
 }
 
 export default ModuleService;
