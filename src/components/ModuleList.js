@@ -1,41 +1,54 @@
 import React from 'react'
 import ModuleListItem from "./ModuleListItem";
 import CourseServiceForJSONFile from "../services/CourseServiceForJSONFile";
+import ModuleService from "../services/ModuleService";
 
 let courseService = CourseServiceForJSONFile.getInstance();
+let moduleService = ModuleService.getInstance();
 
 class ModuleList extends React.Component {
     constructor(props) {
         super(props);
+
+        moduleService.findAllModulesForCourse(this.props.courseId)
+            .then(modules => this.setState({
+
+                modules:modules
+            }))
+
         this.state = {
             module: {
-                id: '-1',
                 title: 'New Module'
             },
-            modules: this.props.modules
+
         }
     }
 
     titleChanged = (event) => {
         this.setState({
             module: {
-                id: (new Date()).getTime(),
                 title: event.target.value
             }
         })
     };
 
     createModule = () => {
-        courseService.createModule(this.props.courseId,this.state.module)
-        this.setState({
-            modules : courseService.findCourseById(this.props.courseId).modules
-        });
+        moduleService.createModule(this.props.courseId, this.state.module)
+            .then( modules => this.setState({
+                modules: modules
+            }));
+
+        // this.props.modules = moduleService.findAllModulesForCourse();
+
+        // this.setState({
+        //     modules: courseService.findCourseById(this.props.courseId).modules
+        // });
     };
 
     deleteModule = (moduleId) => {
-        courseService.deleteModule(this.props.courseId, moduleId)
+        moduleService.deleteModule(moduleId);
         this.setState({
-            modules : courseService.findCourseById(this.props.courseId).modules
+            modules: courseService.findCourseById(this.props.courseId).modules
         })
     };
 
@@ -53,7 +66,7 @@ class ModuleList extends React.Component {
                 </button>
                 <br/>
                 <ul className="list-group">
-                    { this.props.modules !== undefined && this.state.modules.map(module => <ModuleListItem
+                    {this.state.modules !== undefined && this.state.modules.map(module => <ModuleListItem
                         selectedModule={this.props.selectedModule}
                         selectModule={this.props.selectModule}
                         courseId={this.props.courseId}

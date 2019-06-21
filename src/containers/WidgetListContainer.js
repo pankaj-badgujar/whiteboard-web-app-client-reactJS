@@ -27,7 +27,7 @@ import {
 } from "../constants";
 
 const service = WidgetService.getInstance();
-let idAutoIncrement;
+let positionTracker = 0;
 const stateToPropertyMapper = state => (
     {
         widgets: state.widgets,
@@ -45,14 +45,13 @@ const dispatcherToPropertyMapper = dispatch => (
                 service
                     .findAllWidgets()
                     .then(widgets => {
-                        idAutoIncrement = widgets.length + 1;
                         dispatch({type: FIND_ALL_WIDGETS, widgets: widgets})
                     }),
 
             createWidget: () =>
                 service
                     .createWidget({
-                        id: idAutoIncrement++,
+                        position: ++positionTracker,
                         type: "HEADING",
                         size: 1,
                         text: "Heading text"

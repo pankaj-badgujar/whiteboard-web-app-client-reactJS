@@ -42,13 +42,14 @@ class WidgetList extends React.Component {
                                         <label></label>
                                     </div>
                                     <div className="col-6">
-                                        <div className="row">
-                                            {widget !== this.props.widgets[0] && <div className="col-1">
+                                        <div className="row" >
+                                            {widget !== this.props.widgets[0] &&
+                                            <div className="col-1">
                                                 <button
-                                                    type="button"
+                                                    type={"button"}
                                                     onClick={() => this.props.positionUp(widget.id)}
                                                     className="btn btn-warning">
-                                                    <i className="fa fa-arrow-circle-up"></i>
+                                                    <i className="fa fa-arrow-up"></i>
                                                 </button>
                                             </div>}
                                             <label className="col-1"></label>
@@ -58,7 +59,7 @@ class WidgetList extends React.Component {
                                                     type="button"
                                                     onClick={() => this.props.positionDown(widget.id)}
                                                     className="btn btn-warning">
-                                                    <i className="fa fa-arrow-circle-down"></i>
+                                                    <i className="fa fa-arrow-down"></i>
                                                 </button>
                                             </div>}
                                             <label className="col-1"></label>

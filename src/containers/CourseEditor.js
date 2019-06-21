@@ -9,10 +9,11 @@ import Provider from "react-redux/es/components/Provider";
 import {createStore} from "redux";
 import widgetReducer from '../reducers/WidgetReducer';
 import CourseService from "../services/CourseService";
+import ModuleService from "../services/ModuleService";
 
 
 let courseService = CourseService.getInstance();
-
+let moduleService = ModuleService.getInstance();
 
 const store = createStore(widgetReducer);
 
@@ -21,12 +22,9 @@ class CourseEditor extends React.Component {
     constructor(props) {
         super(props);
 
-
-
-
         this.state = {
             courseId: '',
-            course: ''
+            course: '',
             // selectedModule: courseExtracted.modules[0],
             // selectedLesson: courseExtracted.modules[0].lessons[0],
             // selectedTopic: courseExtracted.modules[0].lessons[0].topics[0]
@@ -35,7 +33,7 @@ class CourseEditor extends React.Component {
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.match.params.courseId);
+        this.selectCourse(this.props.match.params.courseId)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -47,7 +45,8 @@ class CourseEditor extends React.Component {
             courseId: courseId,
         });
         courseService.findCourseById(courseId)
-            .then(course => this.setState({course : course}) )
+            .then(course => this.setState({course : course}) );
+
     };
 
     selectTopic = topic => {
@@ -81,11 +80,13 @@ class CourseEditor extends React.Component {
                     <h2>{this.state.course.title}</h2>
                     <div className="row">
                         <div className="col-4">
-                            <ModuleList
+                            {console.log("state : ")}
+                            {console.log(this.state)}
+                            { this.state.course !== '' && <ModuleList
                                 selectedModule={this.state.selectedModule}
                                 selectModule={this.selectModule}
                                 courseId={this.state.courseId}
-                                modules={this.state.course.modules}/>
+                                modules={this.state.course.modules}/>}
                         </div>
 
                         <div className="col-8">

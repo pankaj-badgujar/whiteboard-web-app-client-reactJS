@@ -39,9 +39,7 @@ export default class CourseManager extends React.Component {
     changeCourseTitle = (event) => {
         this.setState({
             course: {
-                id: (new Date()).getTime(),
-                title: event.target.value,
-                modules: []
+                title: event.target.value
             }
         })
     };

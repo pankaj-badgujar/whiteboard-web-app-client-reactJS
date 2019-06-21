@@ -35,7 +35,7 @@ class CourseRow extends React.Component {
 
                 <td scope="row">
                     {!this.state.editing && <Link to={`/course-editor/${this.props.course.id}`}
-                                                  onClick={() => this.props.selectCourse(this.props.course)}><i
+                                                  /*onClick={() => this.props.selectCourse(this.props.course)}*/><i
                         className="fa fa-book"></i> {this.props.course.title}</Link>}
                     {this.state.editing && <input
                         onChange={this.updateNewCourseName}

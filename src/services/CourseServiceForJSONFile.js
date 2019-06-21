@@ -38,15 +38,11 @@ class CourseServiceForJSONFile {
     createModule = (courseId,module) => {
         const selectedCourse = courses.find(course => course.id === courseId);
         selectedCourse.modules.push(module);
-        console.log(selectedCourse.modules);
     };
 
     deleteModule = (courseId, moduleId) => {
-        console.log("here again")
         const selectedCourse = courses.find(course => course.id === courseId);
         selectedCourse.modules = selectedCourse.modules.filter(module => module.id !== moduleId)
-        console.log(selectedCourse.modules)
-        console.log("out")
     }
 
 }

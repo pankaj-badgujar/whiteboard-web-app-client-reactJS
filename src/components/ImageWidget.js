@@ -24,7 +24,7 @@ const ImageWidget = ({classNameForPreview, urlChanged, widget}) =>
             </div>
             <div className={classNameForPreview}>
                 <h5 className="row">Preview</h5>
-                <img src={widget.url} class="img-fluid" alt="Responsive image"/>
+                <img src={widget.url} className="img-fluid" alt="Responsive image"/>
             </div>
         </div>
     </div>
