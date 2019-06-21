@@ -11,13 +11,13 @@ class CourseService {
     }
 
     findAllCourses = () =>
-        // fetch("https://immense-peak-55784.herokuapp.com/api/courses")
-        fetch("http://localhost:8080/api/courses")
+        fetch("https://immense-peak-55784.herokuapp.com/api/courses")
+        // fetch("http://localhost:8080/api/courses")
             .then(response => response.json());
 
     createCourse = course =>
-        // fetch("https://immense-peak-55784.herokuapp.com/api/courses"
-        fetch("http://localhost:8080/api/courses"
+        fetch("https://immense-peak-55784.herokuapp.com/api/courses"
+        // fetch("http://localhost:8080/api/courses"
             , {
                 method: 'POST',
                 body: JSON.stringify(course),
@@ -27,21 +27,21 @@ class CourseService {
             }).then(response => response.json());
 
     deleteCourse = courseId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${courseId}`
-        fetch(`http://localhost:8080/api/courses/${courseId}`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${courseId}`
+        // fetch(`http://localhost:8080/api/courses/${courseId}`
             , {
                 method: 'DELETE'
             })
             .then(response => response.json());
 
     findCourseById = courseId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${courseId}`)
-        fetch(`http://localhost:8080/api/courses/${courseId}`)
+        fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${courseId}`)
+        // fetch(`http://localhost:8080/api/courses/${courseId}`)
             .then(response => response.json());
 
     updateCourse = course =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${course.id}`
-        fetch(`http://localhost:8080/api/courses/${course.id}`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/courses/${course.id}`
+        // fetch(`http://localhost:8080/api/courses/${course.id}`
             , {
             method: 'PUT',
             body: JSON.stringify(course),
