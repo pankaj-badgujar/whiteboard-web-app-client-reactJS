@@ -80,9 +80,7 @@ class CourseEditor extends React.Component {
                     <h2>{this.state.course.title}</h2>
                     <div className="row">
                         <div className="col-4">
-                            {console.log("state : ")}
-                            {console.log(this.state)}
-                            { this.state.course !== '' && <ModuleList
+                            { this.state.course !== '' &&   <ModuleList
                                 selectedModule={this.state.selectedModule}
                                 selectModule={this.selectModule}
                                 courseId={this.state.courseId}

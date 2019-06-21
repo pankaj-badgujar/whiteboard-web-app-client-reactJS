@@ -11,14 +11,14 @@ class WidgetService {
     }
 
     findAllWidgets = () =>
-        fetch("http://localhost:8080/api/widgets")
-        // fetch("https://immense-peak-55784.herokuapp.com/api/widgets")
+        // fetch("http://localhost:8080/api/widgets")
+        fetch("https://immense-peak-55784.herokuapp.com/api/widgets")
             .then(response => response.json());
 
     createWidget = widget =>
 
-        // fetch("https://immense-peak-55784.herokuapp.com/api/widgets"
-        fetch("http://localhost:8080/api/widgets"
+        fetch("https://immense-peak-55784.herokuapp.com/api/widgets"
+        // fetch("http://localhost:8080/api/widgets"
             , {
                 method: 'POST',
                 body: JSON.stringify(widget),
@@ -29,15 +29,15 @@ class WidgetService {
             .then(response => response.json());
 
     deleteWidget = widgetId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}`
-        fetch(`http://localhost:8080/api/widgets/${widgetId}`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}`
+        // fetch(`http://localhost:8080/api/widgets/${widgetId}`
             , {
                 method: 'DELETE'
             }).then(response => response.json());
 
     updateWidget = (widget) =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widget.id}`
-        fetch(`https://localhost:8080/api/widgets/${widget.id}`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widget.id}`
+        // fetch(`http://localhost:8080/api/widgets/${widget.id}`
             , {
                 method: 'PUT',
                 body: JSON.stringify(widget),
@@ -53,13 +53,13 @@ class WidgetService {
     };
 
     findWidgetById = widgetId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}`)
-        fetch(`http://localhost:8080/api/widgets/${widgetId}`)
+        fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}`)
+        // fetch(`http://localhost:8080/api/widgets/${widgetId}`)
             .then(response => response.json());
 
     moveWidgetUpInList = widgetId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}?direction=UP`
-        fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=UP`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}?direction=UP`
+        // fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=UP`
             , {
                 method: 'POST'
             })
@@ -67,8 +67,8 @@ class WidgetService {
 
 
     moveWidgetDownInList = widgetId =>
-        // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}?direction=DOWN`
-        fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=DOWN`
+        fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widgetId}?direction=DOWN`
+        // fetch(`http://localhost:8080/api/widgets/${widgetId}?direction=DOWN`
             , {
                 method: 'POST'
             })
