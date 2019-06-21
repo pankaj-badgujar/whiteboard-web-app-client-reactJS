@@ -12,8 +12,7 @@ class ModuleList extends React.Component {
 
         moduleService.findAllModulesForCourse(this.props.courseId)
             .then(modules => this.setState({
-
-                modules:modules
+                modules: modules
             }))
 
         this.state = {
@@ -34,23 +33,18 @@ class ModuleList extends React.Component {
 
     createModule = () => {
         moduleService.createModule(this.props.courseId, this.state.module)
-            .then( modules => this.setState({
+            .then(modules => this.setState({
                 modules: modules
             }));
-
-        // this.props.modules = moduleService.findAllModulesForCourse();
-
-        // this.setState({
-        //     modules: courseService.findCourseById(this.props.courseId).modules
-        // });
     };
 
     deleteModule = (moduleId) => {
-        moduleService.deleteModule(moduleId);
-        this.setState({
-            modules: courseService.findCourseById(this.props.courseId).modules
-        })
+        moduleService.deleteModule(moduleId)
+            .then(modules => this.setState({
+                modules: modules
+            }));
     };
+
 
     render() {
 

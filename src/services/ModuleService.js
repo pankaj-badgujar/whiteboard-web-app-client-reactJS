@@ -31,8 +31,7 @@ class ModuleService {
         fetch(`http://localhost:8080/api/modules/${moduleId}`,
             {
                 method: 'DELETE'
-            })
-            .then(response => response.json());
+            }).then(response => response.json());
 
 }
 
