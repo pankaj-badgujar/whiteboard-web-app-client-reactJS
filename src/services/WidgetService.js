@@ -37,7 +37,7 @@ class WidgetService {
 
     updateWidget = (widget) =>
         // fetch(`https://immense-peak-55784.herokuapp.com/api/widgets/${widget.id}`
-        fetch(`https://localhost:8080/api/widgets/${widget.id}`
+        fetch(`http://localhost:8080/api/widgets/${widget.id}`
             , {
                 method: 'PUT',
                 body: JSON.stringify(widget),
